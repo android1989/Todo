@@ -12,10 +12,23 @@
 		AF229255174EF9B1000D0662 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF229254174EF9B1000D0662 /* CoreGraphics.framework */; };
 		AF22925B174EF9B1000D0662 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AF229259174EF9B1000D0662 /* InfoPlist.strings */; };
 		AF22925D174EF9B1000D0662 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF22925C174EF9B1000D0662 /* main.m */; };
-		AF229261174EF9B1000D0662 /* CLMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF229260174EF9B1000D0662 /* CLMAppDelegate.m */; };
-		AF229263174EF9B1000D0662 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AF229262174EF9B1000D0662 /* Default.png */; };
-		AF229265174EF9B1000D0662 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF229264174EF9B1000D0662 /* Default@2x.png */; };
-		AF229267174EF9B1000D0662 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF229266174EF9B1000D0662 /* Default-568h@2x.png */; };
+		AF229274174EF9EC000D0662 /* CLMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF22926F174EF9EC000D0662 /* CLMAppDelegate.m */; };
+		AF229275174EF9EC000D0662 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF229271174EF9EC000D0662 /* Default-568h@2x.png */; };
+		AF229276174EF9EC000D0662 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AF229272174EF9EC000D0662 /* Default.png */; };
+		AF229277174EF9EC000D0662 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF229273174EF9EC000D0662 /* Default@2x.png */; };
+		AF22927E174EFA32000D0662 /* CLMApplicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF22927D174EFA32000D0662 /* CLMApplicationViewController.m */; };
+		AF229283174EFB7C000D0662 /* CLMTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF229281174EFB7C000D0662 /* CLMTodoViewController.m */; };
+		AF229284174EFB7C000D0662 /* CLMTodoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF229282174EFB7C000D0662 /* CLMTodoViewController.xib */; };
+		AF229288174EFC7D000D0662 /* CLMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = AF229287174EFC7D000D0662 /* CLMConstants.m */; };
+		AF229290174EFDD4000D0662 /* CLMTodoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AF22928F174EFDD4000D0662 /* CLMTodoItem.m */; };
+		AF229295174EFDED000D0662 /* CLMTodoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF229294174EFDED000D0662 /* CLMTodoDataManager.m */; };
+		AF22929A174F0202000D0662 /* UITableView+CellSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = AF229299174F0202000D0662 /* UITableView+CellSwitch.m */; };
+		AF22929D174F02EF000D0662 /* UIView+ImageCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = AF22929C174F02EF000D0662 /* UIView+ImageCapture.m */; };
+		AF22929F174F032F000D0662 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF22929E174F032F000D0662 /* QuartzCore.framework */; };
+		AF2292A2174F0C2C000D0662 /* UIColor+TodoColors.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2292A1174F0C2C000D0662 /* UIColor+TodoColors.m */; };
+		AF2292A6174F1DF8000D0662 /* CLMTodoItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2292A5174F1DF8000D0662 /* CLMTodoItemCell.m */; };
+		AF2292A8174F1E0B000D0662 /* CLMTodoItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2292A7174F1E0B000D0662 /* CLMTodoItemCell.xib */; };
+		AF2292AB174F2144000D0662 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF2292AA174F2144000D0662 /* OpenSans-SemiboldItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,11 +40,34 @@
 		AF22925A174EF9B1000D0662 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AF22925C174EF9B1000D0662 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AF22925E174EF9B1000D0662 /* Todo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Todo-Prefix.pch"; sourceTree = "<group>"; };
-		AF22925F174EF9B1000D0662 /* CLMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMAppDelegate.h; sourceTree = "<group>"; };
-		AF229260174EF9B1000D0662 /* CLMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLMAppDelegate.m; sourceTree = "<group>"; };
-		AF229262174EF9B1000D0662 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		AF229264174EF9B1000D0662 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		AF229266174EF9B1000D0662 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		AF22926E174EF9EC000D0662 /* CLMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMAppDelegate.h; sourceTree = "<group>"; };
+		AF22926F174EF9EC000D0662 /* CLMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMAppDelegate.m; sourceTree = "<group>"; };
+		AF229271174EF9EC000D0662 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		AF229272174EF9EC000D0662 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		AF229273174EF9EC000D0662 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		AF22927C174EFA32000D0662 /* CLMApplicationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMApplicationViewController.h; sourceTree = "<group>"; };
+		AF22927D174EFA32000D0662 /* CLMApplicationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMApplicationViewController.m; sourceTree = "<group>"; };
+		AF229280174EFB7C000D0662 /* CLMTodoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMTodoViewController.h; sourceTree = "<group>"; };
+		AF229281174EFB7C000D0662 /* CLMTodoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMTodoViewController.m; sourceTree = "<group>"; };
+		AF229282174EFB7C000D0662 /* CLMTodoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMTodoViewController.xib; sourceTree = "<group>"; };
+		AF229286174EFC7D000D0662 /* CLMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMConstants.h; sourceTree = "<group>"; };
+		AF229287174EFC7D000D0662 /* CLMConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMConstants.m; sourceTree = "<group>"; };
+		AF22928E174EFDD4000D0662 /* CLMTodoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMTodoItem.h; sourceTree = "<group>"; };
+		AF22928F174EFDD4000D0662 /* CLMTodoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMTodoItem.m; sourceTree = "<group>"; };
+		AF229293174EFDED000D0662 /* CLMTodoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMTodoDataManager.h; sourceTree = "<group>"; };
+		AF229294174EFDED000D0662 /* CLMTodoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMTodoDataManager.m; sourceTree = "<group>"; };
+		AF229298174F0202000D0662 /* UITableView+CellSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CellSwitch.h"; sourceTree = "<group>"; };
+		AF229299174F0202000D0662 /* UITableView+CellSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CellSwitch.m"; sourceTree = "<group>"; };
+		AF22929B174F02EF000D0662 /* UIView+ImageCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ImageCapture.h"; sourceTree = "<group>"; };
+		AF22929C174F02EF000D0662 /* UIView+ImageCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ImageCapture.m"; sourceTree = "<group>"; };
+		AF22929E174F032F000D0662 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AF2292A0174F0C2C000D0662 /* UIColor+TodoColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TodoColors.h"; sourceTree = "<group>"; };
+		AF2292A1174F0C2C000D0662 /* UIColor+TodoColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TodoColors.m"; sourceTree = "<group>"; };
+		AF2292A4174F1DF8000D0662 /* CLMTodoItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMTodoItemCell.h; sourceTree = "<group>"; };
+		AF2292A5174F1DF8000D0662 /* CLMTodoItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMTodoItemCell.m; sourceTree = "<group>"; };
+		AF2292A7174F1E0B000D0662 /* CLMTodoItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMTodoItemCell.xib; sourceTree = "<group>"; };
+		AF2292AA174F2144000D0662 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		AF2292AC174F2192000D0662 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF22929F174F032F000D0662 /* QuartzCore.framework in Frameworks */,
 				AF229251174EF9B1000D0662 /* UIKit.framework in Frameworks */,
 				AF229253174EF9B1000D0662 /* Foundation.framework in Frameworks */,
 				AF229255174EF9B1000D0662 /* CoreGraphics.framework in Frameworks */,
@@ -68,6 +105,7 @@
 		AF22924F174EF9B1000D0662 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AF22929E174F032F000D0662 /* QuartzCore.framework */,
 				AF229250174EF9B1000D0662 /* UIKit.framework */,
 				AF229252174EF9B1000D0662 /* Foundation.framework */,
 				AF229254174EF9B1000D0662 /* CoreGraphics.framework */,
@@ -78,8 +116,6 @@
 		AF229256174EF9B1000D0662 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
-				AF22925F174EF9B1000D0662 /* CLMAppDelegate.h */,
-				AF229260174EF9B1000D0662 /* CLMAppDelegate.m */,
 				AF229257174EF9B1000D0662 /* Supporting Files */,
 			);
 			path = Todo;
@@ -88,15 +124,151 @@
 		AF229257174EF9B1000D0662 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AF22926D174EF9EC000D0662 /* Classes */,
+				AF229270174EF9EC000D0662 /* Resources */,
 				AF229258174EF9B1000D0662 /* Todo-Info.plist */,
 				AF229259174EF9B1000D0662 /* InfoPlist.strings */,
 				AF22925C174EF9B1000D0662 /* main.m */,
 				AF22925E174EF9B1000D0662 /* Todo-Prefix.pch */,
-				AF229262174EF9B1000D0662 /* Default.png */,
-				AF229264174EF9B1000D0662 /* Default@2x.png */,
-				AF229266174EF9B1000D0662 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AF22926D174EF9EC000D0662 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				AF229291174EFDDD000D0662 /* Managers */,
+				AF229285174EFC6E000D0662 /* Utilities */,
+				AF229278174EFA06000D0662 /* Models */,
+				AF229279174EFA06000D0662 /* ViewControllers */,
+				AF22927A174EFA06000D0662 /* Views */,
+				AF22926E174EF9EC000D0662 /* CLMAppDelegate.h */,
+				AF22926F174EF9EC000D0662 /* CLMAppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		AF229270174EF9EC000D0662 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AF2292A9174F2144000D0662 /* Fonts */,
+				AF229271174EF9EC000D0662 /* Default-568h@2x.png */,
+				AF229272174EF9EC000D0662 /* Default.png */,
+				AF229273174EF9EC000D0662 /* Default@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AF229278174EFA06000D0662 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AF22928D174EFDD4000D0662 /* TodoItem */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AF229279174EFA06000D0662 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AF22927F174EFB6C000D0662 /* TodoViewController */,
+				AF22927B174EFA17000D0662 /* ApplicationViewController */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		AF22927A174EFA06000D0662 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AF2292A3174F1DE3000D0662 /* TodoItemCell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AF22927B174EFA17000D0662 /* ApplicationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AF22927C174EFA32000D0662 /* CLMApplicationViewController.h */,
+				AF22927D174EFA32000D0662 /* CLMApplicationViewController.m */,
+			);
+			path = ApplicationViewController;
+			sourceTree = "<group>";
+		};
+		AF22927F174EFB6C000D0662 /* TodoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AF229280174EFB7C000D0662 /* CLMTodoViewController.h */,
+				AF229281174EFB7C000D0662 /* CLMTodoViewController.m */,
+				AF229282174EFB7C000D0662 /* CLMTodoViewController.xib */,
+			);
+			path = TodoViewController;
+			sourceTree = "<group>";
+		};
+		AF229285174EFC6E000D0662 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AF229297174F01E4000D0662 /* Categories */,
+				AF229286174EFC7D000D0662 /* CLMConstants.h */,
+				AF229287174EFC7D000D0662 /* CLMConstants.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		AF22928D174EFDD4000D0662 /* TodoItem */ = {
+			isa = PBXGroup;
+			children = (
+				AF22928E174EFDD4000D0662 /* CLMTodoItem.h */,
+				AF22928F174EFDD4000D0662 /* CLMTodoItem.m */,
+			);
+			path = TodoItem;
+			sourceTree = "<group>";
+		};
+		AF229291174EFDDD000D0662 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				AF229292174EFDDD000D0662 /* DataManager */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		AF229292174EFDDD000D0662 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				AF229293174EFDED000D0662 /* CLMTodoDataManager.h */,
+				AF229294174EFDED000D0662 /* CLMTodoDataManager.m */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		AF229297174F01E4000D0662 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				AF229298174F0202000D0662 /* UITableView+CellSwitch.h */,
+				AF229299174F0202000D0662 /* UITableView+CellSwitch.m */,
+				AF22929B174F02EF000D0662 /* UIView+ImageCapture.h */,
+				AF22929C174F02EF000D0662 /* UIView+ImageCapture.m */,
+				AF2292A0174F0C2C000D0662 /* UIColor+TodoColors.h */,
+				AF2292A1174F0C2C000D0662 /* UIColor+TodoColors.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		AF2292A3174F1DE3000D0662 /* TodoItemCell */ = {
+			isa = PBXGroup;
+			children = (
+				AF2292A4174F1DF8000D0662 /* CLMTodoItemCell.h */,
+				AF2292A5174F1DF8000D0662 /* CLMTodoItemCell.m */,
+				AF2292A7174F1E0B000D0662 /* CLMTodoItemCell.xib */,
+			);
+			path = TodoItemCell;
+			sourceTree = "<group>";
+		};
+		AF2292A9174F2144000D0662 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				AF2292AC174F2192000D0662 /* OpenSans-Semibold.ttf */,
+				AF2292AA174F2144000D0662 /* OpenSans-SemiboldItalic.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,9 +324,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF22925B174EF9B1000D0662 /* InfoPlist.strings in Resources */,
-				AF229263174EF9B1000D0662 /* Default.png in Resources */,
-				AF229265174EF9B1000D0662 /* Default@2x.png in Resources */,
-				AF229267174EF9B1000D0662 /* Default-568h@2x.png in Resources */,
+				AF229275174EF9EC000D0662 /* Default-568h@2x.png in Resources */,
+				AF229276174EF9EC000D0662 /* Default.png in Resources */,
+				AF229277174EF9EC000D0662 /* Default@2x.png in Resources */,
+				AF229284174EFB7C000D0662 /* CLMTodoViewController.xib in Resources */,
+				AF2292A8174F1E0B000D0662 /* CLMTodoItemCell.xib in Resources */,
+				AF2292AB174F2144000D0662 /* OpenSans-SemiboldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,7 +341,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF22925D174EF9B1000D0662 /* main.m in Sources */,
-				AF229261174EF9B1000D0662 /* CLMAppDelegate.m in Sources */,
+				AF229274174EF9EC000D0662 /* CLMAppDelegate.m in Sources */,
+				AF22927E174EFA32000D0662 /* CLMApplicationViewController.m in Sources */,
+				AF229283174EFB7C000D0662 /* CLMTodoViewController.m in Sources */,
+				AF229288174EFC7D000D0662 /* CLMConstants.m in Sources */,
+				AF229290174EFDD4000D0662 /* CLMTodoItem.m in Sources */,
+				AF229295174EFDED000D0662 /* CLMTodoDataManager.m in Sources */,
+				AF22929A174F0202000D0662 /* UITableView+CellSwitch.m in Sources */,
+				AF22929D174F02EF000D0662 /* UIView+ImageCapture.m in Sources */,
+				AF2292A2174F0C2C000D0662 /* UIColor+TodoColors.m in Sources */,
+				AF2292A6174F1DF8000D0662 /* CLMTodoItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

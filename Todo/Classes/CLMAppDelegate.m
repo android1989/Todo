@@ -7,14 +7,34 @@
 //
 
 #import "CLMAppDelegate.h"
+#import "CLMApplicationViewController.h"
 
+@interface CLMAppDelegate ()
+
+@property (nonatomic, strong) CLMApplicationViewController *applicationViewController;
+
+@end
 @implementation CLMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.applicationViewController = [[CLMApplicationViewController alloc] init];
+    
+    __weak CLMApplicationViewController *weakSelf = self.applicationViewController;
+    [self.applicationViewController setApplicationLaunchBlock:^(void)
+    {
+        //do set up in here
+        weakSelf.todoViewController = [[CLMTodoViewController alloc] init];
+        [weakSelf addChildViewController:weakSelf.todoViewController];
+        [weakSelf.view addSubview:weakSelf.todoViewController.view];
+        [weakSelf.todoViewController didMoveToParentViewController:weakSelf];
+        
+    }];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    [self.window setRootViewController:self.applicationViewController];
     [self.window makeKeyAndVisible];
     return YES;
 }
