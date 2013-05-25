@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface CLMTodoItem : NSObject
-
+@property (nonatomic, strong) NSNumber *itemID;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) BOOL checked;
 @end

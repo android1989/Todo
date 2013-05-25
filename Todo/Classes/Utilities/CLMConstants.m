@@ -8,8 +8,9 @@
 
 #import "CLMConstants.h"
 
-NSString * const BaseURL = @"http://infinite-meadow-1660.herokuapp.com";
-NSString * const ListsPath = @"/lists";
+NSString * const CLMBaseURL = @"http://infinite-meadow-1660.herokuapp.com";
+NSString * const CLMListsPath = @"/lists";
+NSString * const CLMItemsPath = @"/list_items";
 
 NSString * const TodoCellIdentifer = @"TodoCellIdentifer";
-
+NSString * const ListCellIdentifer = @"ListCellIdentifer";

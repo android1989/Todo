@@ -24,10 +24,10 @@
     [self.applicationViewController setApplicationLaunchBlock:^(void)
     {
         //do set up in here
-        weakSelf.todoViewController = [[CLMTodoViewController alloc] init];
-        [weakSelf addChildViewController:weakSelf.todoViewController];
-        [weakSelf.view addSubview:weakSelf.todoViewController.view];
-        [weakSelf.todoViewController didMoveToParentViewController:weakSelf];
+        weakSelf.listsViewController = [[CLMListsViewController alloc] init];
+        [weakSelf addChildViewController:weakSelf.listsViewController];
+        [weakSelf.view addSubview:weakSelf.listsViewController.view];
+        [weakSelf.listsViewController didMoveToParentViewController:weakSelf];
         
     }];
     

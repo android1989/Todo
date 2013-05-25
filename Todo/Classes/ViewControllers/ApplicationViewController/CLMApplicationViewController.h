@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CLMTodoViewController.h"
+#import "CLMListsViewController.h"
 
 typedef void(^ApplicationLaunchBlock)(void);
 @interface CLMApplicationViewController : UIViewController
 
 @property (nonatomic, copy) ApplicationLaunchBlock applicationLaunchBlock;
 
-@property (nonatomic, strong) CLMTodoViewController *todoViewController;
+@property (nonatomic, strong) CLMListsViewController *listsViewController;
 @end

@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 
 //DataManager ;
-extern NSString * const BaseURL;
-extern NSString * const ListsPath;
+extern NSString * const CLMBaseURL;
+extern NSString * const CLMListsPath;
+extern NSString * const CLMItemsPath;
 
 //UITableViewCell Identifiers;
 extern NSString * const TodoCellIdentifer;
+extern NSString * const ListCellIdentifer;

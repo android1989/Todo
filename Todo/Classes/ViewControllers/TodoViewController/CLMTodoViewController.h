@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CLMTodoList;
 
 @interface CLMTodoViewController : UIViewController
 
+@property (nonatomic, strong) CLMTodoList *list;
 @end

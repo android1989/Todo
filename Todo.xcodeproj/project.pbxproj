@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33112DE608A2422D86154885 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EDE598726D4BF1815844AD /* libPods.a */; };
 		AF229251174EF9B1000D0662 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF229250174EF9B1000D0662 /* UIKit.framework */; };
 		AF229253174EF9B1000D0662 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF229252174EF9B1000D0662 /* Foundation.framework */; };
 		AF229255174EF9B1000D0662 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF229254174EF9B1000D0662 /* CoreGraphics.framework */; };
@@ -29,9 +30,21 @@
 		AF2292A6174F1DF8000D0662 /* CLMTodoItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2292A5174F1DF8000D0662 /* CLMTodoItemCell.m */; };
 		AF2292A8174F1E0B000D0662 /* CLMTodoItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2292A7174F1E0B000D0662 /* CLMTodoItemCell.xib */; };
 		AF2292AB174F2144000D0662 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF2292AA174F2144000D0662 /* OpenSans-SemiboldItalic.ttf */; };
+		AF2292B1175020CC000D0662 /* cell_background.png in Resources */ = {isa = PBXBuildFile; fileRef = AF2292AF175020CC000D0662 /* cell_background.png */; };
+		AF2292B2175020CC000D0662 /* cell_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF2292B0175020CC000D0662 /* cell_background@2x.png */; };
+		AF2292B717507DDB000D0662 /* CLMEditItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2292B517507DDB000D0662 /* CLMEditItemViewController.m */; };
+		AF2292B817507DDB000D0662 /* CLMEditItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2292B617507DDB000D0662 /* CLMEditItemViewController.xib */; };
+		AF2292BD17508292000D0662 /* CLMEditTransitionMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2292BC17508292000D0662 /* CLMEditTransitionMediator.m */; };
+		AF2293C5175115D3000D0662 /* CLMTodoList.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2293C4175115D3000D0662 /* CLMTodoList.m */; };
+		AF2293CA17512076000D0662 /* CLMListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2293C817512076000D0662 /* CLMListsViewController.m */; };
+		AF2293CB17512076000D0662 /* CLMListsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2293C917512076000D0662 /* CLMListsViewController.xib */; };
+		AF2293CF17512131000D0662 /* CLMListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2293CE17512131000D0662 /* CLMListCell.m */; };
+		AF2293D1175123A6000D0662 /* CLMListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2293D0175123A5000D0662 /* CLMListCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C91E80E787541FE97790DAB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		82EDE598726D4BF1815844AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF22924D174EF9B1000D0662 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF229250174EF9B1000D0662 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AF229252174EF9B1000D0662 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -68,6 +81,21 @@
 		AF2292A7174F1E0B000D0662 /* CLMTodoItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMTodoItemCell.xib; sourceTree = "<group>"; };
 		AF2292AA174F2144000D0662 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		AF2292AC174F2192000D0662 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		AF2292AF175020CC000D0662 /* cell_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_background.png; sourceTree = "<group>"; };
+		AF2292B0175020CC000D0662 /* cell_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_background@2x.png"; sourceTree = "<group>"; };
+		AF2292B417507DDB000D0662 /* CLMEditItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMEditItemViewController.h; sourceTree = "<group>"; };
+		AF2292B517507DDB000D0662 /* CLMEditItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMEditItemViewController.m; sourceTree = "<group>"; };
+		AF2292B617507DDB000D0662 /* CLMEditItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMEditItemViewController.xib; sourceTree = "<group>"; };
+		AF2292BB17508292000D0662 /* CLMEditTransitionMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMEditTransitionMediator.h; sourceTree = "<group>"; };
+		AF2292BC17508292000D0662 /* CLMEditTransitionMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMEditTransitionMediator.m; sourceTree = "<group>"; };
+		AF2293C3175115D3000D0662 /* CLMTodoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMTodoList.h; sourceTree = "<group>"; };
+		AF2293C4175115D3000D0662 /* CLMTodoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMTodoList.m; sourceTree = "<group>"; };
+		AF2293C717512076000D0662 /* CLMListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMListsViewController.h; sourceTree = "<group>"; };
+		AF2293C817512076000D0662 /* CLMListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMListsViewController.m; sourceTree = "<group>"; };
+		AF2293C917512076000D0662 /* CLMListsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMListsViewController.xib; sourceTree = "<group>"; };
+		AF2293CD17512131000D0662 /* CLMListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMListCell.h; sourceTree = "<group>"; };
+		AF2293CE17512131000D0662 /* CLMListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMListCell.m; sourceTree = "<group>"; };
+		AF2293D0175123A5000D0662 /* CLMListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMListCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +107,7 @@
 				AF229251174EF9B1000D0662 /* UIKit.framework in Frameworks */,
 				AF229253174EF9B1000D0662 /* Foundation.framework in Frameworks */,
 				AF229255174EF9B1000D0662 /* CoreGraphics.framework in Frameworks */,
+				33112DE608A2422D86154885 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +120,7 @@
 				AF229256174EF9B1000D0662 /* Todo */,
 				AF22924F174EF9B1000D0662 /* Frameworks */,
 				AF22924E174EF9B1000D0662 /* Products */,
+				3C91E80E787541FE97790DAB /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +139,7 @@
 				AF229250174EF9B1000D0662 /* UIKit.framework */,
 				AF229252174EF9B1000D0662 /* Foundation.framework */,
 				AF229254174EF9B1000D0662 /* CoreGraphics.framework */,
+				82EDE598726D4BF1815844AD /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,6 +168,7 @@
 		AF22926D174EF9EC000D0662 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AF2292B917508268000D0662 /* Mediators */,
 				AF229291174EFDDD000D0662 /* Managers */,
 				AF229285174EFC6E000D0662 /* Utilities */,
 				AF229278174EFA06000D0662 /* Models */,
@@ -151,6 +183,7 @@
 		AF229270174EF9EC000D0662 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AF2292AD175020CC000D0662 /* Images */,
 				AF2292A9174F2144000D0662 /* Fonts */,
 				AF229271174EF9EC000D0662 /* Default-568h@2x.png */,
 				AF229272174EF9EC000D0662 /* Default.png */,
@@ -162,6 +195,7 @@
 		AF229278174EFA06000D0662 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AF2293C2175115C6000D0662 /* TodoList */,
 				AF22928D174EFDD4000D0662 /* TodoItem */,
 			);
 			path = Models;
@@ -170,6 +204,8 @@
 		AF229279174EFA06000D0662 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AF2293C61751205A000D0662 /* ListViewController */,
+				AF2292B317507DC7000D0662 /* EditItemViewController */,
 				AF22927F174EFB6C000D0662 /* TodoViewController */,
 				AF22927B174EFA17000D0662 /* ApplicationViewController */,
 			);
@@ -179,6 +215,7 @@
 		AF22927A174EFA06000D0662 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AF2293CC1751211F000D0662 /* ListCell */,
 				AF2292A3174F1DE3000D0662 /* TodoItemCell */,
 			);
 			path = Views;
@@ -271,6 +308,79 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		AF2292AD175020CC000D0662 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				AF2292AE175020CC000D0662 /* TodoCells */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		AF2292AE175020CC000D0662 /* TodoCells */ = {
+			isa = PBXGroup;
+			children = (
+				AF2292AF175020CC000D0662 /* cell_background.png */,
+				AF2292B0175020CC000D0662 /* cell_background@2x.png */,
+			);
+			path = TodoCells;
+			sourceTree = "<group>";
+		};
+		AF2292B317507DC7000D0662 /* EditItemViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AF2292B417507DDB000D0662 /* CLMEditItemViewController.h */,
+				AF2292B517507DDB000D0662 /* CLMEditItemViewController.m */,
+				AF2292B617507DDB000D0662 /* CLMEditItemViewController.xib */,
+			);
+			path = EditItemViewController;
+			sourceTree = "<group>";
+		};
+		AF2292B917508268000D0662 /* Mediators */ = {
+			isa = PBXGroup;
+			children = (
+				AF2292BA1750827C000D0662 /* ListToEdit */,
+			);
+			path = Mediators;
+			sourceTree = "<group>";
+		};
+		AF2292BA1750827C000D0662 /* ListToEdit */ = {
+			isa = PBXGroup;
+			children = (
+				AF2292BB17508292000D0662 /* CLMEditTransitionMediator.h */,
+				AF2292BC17508292000D0662 /* CLMEditTransitionMediator.m */,
+			);
+			path = ListToEdit;
+			sourceTree = "<group>";
+		};
+		AF2293C2175115C6000D0662 /* TodoList */ = {
+			isa = PBXGroup;
+			children = (
+				AF2293C3175115D3000D0662 /* CLMTodoList.h */,
+				AF2293C4175115D3000D0662 /* CLMTodoList.m */,
+			);
+			path = TodoList;
+			sourceTree = "<group>";
+		};
+		AF2293C61751205A000D0662 /* ListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AF2293C717512076000D0662 /* CLMListsViewController.h */,
+				AF2293C817512076000D0662 /* CLMListsViewController.m */,
+				AF2293C917512076000D0662 /* CLMListsViewController.xib */,
+			);
+			path = ListViewController;
+			sourceTree = "<group>";
+		};
+		AF2293CC1751211F000D0662 /* ListCell */ = {
+			isa = PBXGroup;
+			children = (
+				AF2293CD17512131000D0662 /* CLMListCell.h */,
+				AF2293CE17512131000D0662 /* CLMListCell.m */,
+				AF2293D0175123A5000D0662 /* CLMListCell.xib */,
+			);
+			path = ListCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -278,9 +388,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AF22926A174EF9B1000D0662 /* Build configuration list for PBXNativeTarget "Todo" */;
 			buildPhases = (
+				497A60B7B3814020859031C8 /* Check Pods Manifest.lock */,
 				AF229249174EF9B1000D0662 /* Sources */,
 				AF22924A174EF9B1000D0662 /* Frameworks */,
 				AF22924B174EF9B1000D0662 /* Resources */,
+				E5680D90EFA64C09B095FB6A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -330,10 +442,46 @@
 				AF229284174EFB7C000D0662 /* CLMTodoViewController.xib in Resources */,
 				AF2292A8174F1E0B000D0662 /* CLMTodoItemCell.xib in Resources */,
 				AF2292AB174F2144000D0662 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				AF2292B1175020CC000D0662 /* cell_background.png in Resources */,
+				AF2292B2175020CC000D0662 /* cell_background@2x.png in Resources */,
+				AF2292B817507DDB000D0662 /* CLMEditItemViewController.xib in Resources */,
+				AF2293CB17512076000D0662 /* CLMListsViewController.xib in Resources */,
+				AF2293D1175123A6000D0662 /* CLMListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		497A60B7B3814020859031C8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
+		E5680D90EFA64C09B095FB6A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AF229249174EF9B1000D0662 /* Sources */ = {
@@ -351,6 +499,11 @@
 				AF22929D174F02EF000D0662 /* UIView+ImageCapture.m in Sources */,
 				AF2292A2174F0C2C000D0662 /* UIColor+TodoColors.m in Sources */,
 				AF2292A6174F1DF8000D0662 /* CLMTodoItemCell.m in Sources */,
+				AF2292B717507DDB000D0662 /* CLMEditItemViewController.m in Sources */,
+				AF2292BD17508292000D0662 /* CLMEditTransitionMediator.m in Sources */,
+				AF2293C5175115D3000D0662 /* CLMTodoList.m in Sources */,
+				AF2293CA17512076000D0662 /* CLMListsViewController.m in Sources */,
+				AF2293CF17512131000D0662 /* CLMListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +579,7 @@
 		};
 		AF22926B174EF9B1000D0662 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C91E80E787541FE97790DAB /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Todo/Todo-Prefix.pch";
@@ -437,6 +591,7 @@
 		};
 		AF22926C174EF9B1000D0662 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C91E80E787541FE97790DAB /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Todo/Todo-Prefix.pch";
@@ -465,6 +620,7 @@
 				AF22926C174EF9B1000D0662 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
