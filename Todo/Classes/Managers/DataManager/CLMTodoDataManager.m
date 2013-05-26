@@ -46,7 +46,7 @@ static CLMTodoDataManager *sharedManager = nil;
 {
     NSURL *baseURL = [NSURL URLWithString:CLMBaseURL];
     self.objectManager = [RKObjectManager managerWithBaseURL:baseURL];
-    
+        
     RKObjectMapping *itemMapping = [RKObjectMapping mappingForClass:[CLMTodoItem class]];
     [itemMapping addAttributeMappingsFromDictionary:@{@"id":@"itemID",@"title":@"title",@"checked":@"checked"}];
     
@@ -135,6 +135,26 @@ static CLMTodoDataManager *sharedManager = nil;
 - (void)updateItem:(CLMTodoItem *)item completionBlock:(dataCompletionBlock)completionBlock
 {
     [self.objectManager putObject:nil path:CLMItemsPath parameters:@{@"item_id":item.itemID,@"title":item.title,@"checked":[NSNumber numberWithBool:item.checked]} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        
+    }];
+}
+
+#pragma mark - deletes
+
+- (void)deleteList:(CLMTodoList *)list completionBlock:(dataCompletionBlock)completionBlock
+{
+    [self.objectManager deleteObject:nil path:CLMListsPath parameters:@{@"list_id":list.listID} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        
+    }];
+}
+
+- (void)deleteItem:(CLMTodoItem *)item completionBlock:(dataCompletionBlock)completionBlock
+{
+    [self.objectManager deleteObject:nil path:CLMItemsPath parameters:@{@"item_id":item.itemID} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         

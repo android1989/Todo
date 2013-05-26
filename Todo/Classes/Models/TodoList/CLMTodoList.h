@@ -15,4 +15,5 @@
 @property (nonatomic, strong) NSArray *items;
 
 - (void)addTodoItem:(CLMTodoItem *)newItem;
+- (void)removeTodoItem:(CLMTodoItem *)item;
 @end

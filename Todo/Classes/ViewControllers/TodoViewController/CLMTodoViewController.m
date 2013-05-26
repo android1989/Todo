@@ -15,7 +15,7 @@
 #import "CLMEditItemViewController.h"
 #import "CLMTodoList.h"
 
-@interface CLMTodoViewController () <UITableViewDataSource, UITableViewDelegate, CLMEditItemViewControllerDelegate>
+@interface CLMTodoViewController () <UITableViewDataSource, UITableViewDelegate, CLMEditItemViewControllerDelegate, CLMTodoItemCellDelegate>
 
 @property (nonatomic, strong) CLMEditItemViewController *editViewController;
 @property (nonatomic, strong) IBOutlet UITableView *itemsTableView;
@@ -92,18 +92,12 @@
         cell = [[CLMTodoItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TodoCellIdentifer];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    cell.delegate = self;
     
     //Configure Cell
     CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
-    cell.titleField.text = item.title;
-    
-    
-    CGRect titleFieldFrame = cell.titleField.frame;
-    [cell.titleField sizeToFit];
-    titleFieldFrame.size.width = CGRectGetWidth(cell.titleField.frame);
-    cell.titleField.frame = titleFieldFrame;
-
-    
+    [cell configureForItem:item];
+        
     return cell;
 }
 
@@ -128,6 +122,29 @@
 
 #pragma mark - Helpers
 
+#pragma mark - CLMTodoItemCellDelegate
+-(void)cellHasBecomeUnchecked:(CLMTodoItemCell *)cell
+{
+    NSIndexPath *indexPath = [self.itemsTableView indexPathForCell:cell];
+    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
+    [item updateChecked:NO];
+}
+
+- (void)cellHasBecomeChecked:(CLMTodoItemCell *)cell
+{
+    NSIndexPath *indexPath = [self.itemsTableView indexPathForCell:cell];
+    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
+    [item updateChecked:YES];
+}
+
+- (void)cellHasBeenDeleted:(CLMTodoItemCell *)cell
+{
+    NSIndexPath *indexPath = [self.itemsTableView indexPathForCell:cell];
+    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
+    [self.list removeTodoItem:item];
+    [self.itemsTableView reloadData];
+}
+
 #pragma mark - CLMEditItemViewControllerDelegate
 
 - (void)editDidFinish
@@ -150,9 +167,14 @@
 - (IBAction)new:(id)sender
 {
     CLMTodoItem *newItem = [[CLMTodoItem alloc] init];
-    newItem.title = @"THIS IS A TEST PART 3";
     
     [self.list addTodoItem:newItem];
     [self.itemsTableView reloadData];
+    
+    self.editViewController.item = newItem;
+    
+    [self addChildViewController:self.editViewController];
+    [self.view addSubview:self.editViewController.view];
+    [self.editViewController didMoveToParentViewController:self];
 }
 @end

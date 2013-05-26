@@ -12,4 +12,7 @@
 @property (nonatomic, strong) NSNumber *itemID;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) BOOL checked;
+
+- (void)updateTitle:(NSString *)title;
+- (void)updateChecked:(BOOL)checked;
 @end

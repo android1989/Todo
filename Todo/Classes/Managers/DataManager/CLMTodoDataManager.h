@@ -23,4 +23,6 @@ typedef void (^dataCompletionBlock)(id data);
 - (void)postNewItem:(CLMTodoItem *)newItem toList:(CLMTodoList *)list completionBlock:(dataCompletionBlock)completionBlock;
 - (void)updateList:(CLMTodoList *)list completionBlock:(dataCompletionBlock)completionBlock;
 - (void)updateItem:(CLMTodoItem *)item completionBlock:(dataCompletionBlock)completionBlock;
+- (void)deleteList:(CLMTodoList *)list completionBlock:(dataCompletionBlock)completionBlock;
+- (void)deleteItem:(CLMTodoItem *)item completionBlock:(dataCompletionBlock)completionBlock;
 @end

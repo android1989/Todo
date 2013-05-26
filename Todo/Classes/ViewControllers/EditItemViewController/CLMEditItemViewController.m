@@ -64,7 +64,7 @@
 - (void)removeViewController
 {
     [self.titleField resignFirstResponder];
-    self.item.title = self.titleField.text;
+    [self.item updateTitle:self.titleField.text];
     [self.delegate editDidFinish];
 }
 

@@ -7,9 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CLMTodoItem;
+
+@protocol CLMTodoItemCellDelegate;
+
+typedef NS_ENUM(NSInteger, ItemCellState)
+{
+    CellCheckedState,
+    CellUncheckedState
+};
 
 @interface CLMTodoItemCell : UITableViewCell
 
+@property (nonatomic, readonly) ItemCellState state;
 @property (nonatomic, weak) IBOutlet UITextField *titleField;
+@property (nonatomic, weak) id<CLMTodoItemCellDelegate> delegate;
 - (NSInteger)cellHeight;
+- (void)configureForItem:(CLMTodoItem *)item;
+@end
+
+@protocol CLMTodoItemCellDelegate <NSObject>
+
+- (void)cellHasBeenDeleted:(CLMTodoItemCell *)cell;
+- (void)cellHasBecomeChecked:(CLMTodoItemCell *)cell;
+- (void)cellHasBecomeUnchecked:(CLMTodoItemCell *)cell;;
+
 @end
