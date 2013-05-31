@@ -125,7 +125,7 @@ static CLMTodoDataManager *sharedManager = nil;
 
 - (void)updateList:(CLMTodoList *)list completionBlock:(dataCompletionBlock)completionBlock
 {
-    [self.objectManager putObject:nil path:CLMListsPath parameters:@{@"list_id":list.listID,@"title":list.title} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.objectManager putObject:nil path:[CLMListsPath stringByAppendingFormat:@"/%@",list.listID] parameters:@{@"title":list.title} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         
@@ -134,7 +134,7 @@ static CLMTodoDataManager *sharedManager = nil;
 
 - (void)updateItem:(CLMTodoItem *)item completionBlock:(dataCompletionBlock)completionBlock
 {
-    [self.objectManager putObject:nil path:CLMItemsPath parameters:@{@"item_id":item.itemID,@"title":item.title,@"checked":[NSNumber numberWithBool:item.checked]} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.objectManager putObject:nil path:[CLMItemsPath stringByAppendingFormat:@"/%@.json",item.itemID] parameters:@{@"title":item.title,@"checked":@(item.checked)} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         
@@ -145,7 +145,7 @@ static CLMTodoDataManager *sharedManager = nil;
 
 - (void)deleteList:(CLMTodoList *)list completionBlock:(dataCompletionBlock)completionBlock
 {
-    [self.objectManager deleteObject:nil path:CLMListsPath parameters:@{@"list_id":list.listID} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.objectManager deleteObject:nil path:[CLMListsPath stringByAppendingFormat:@"/%@",list.listID] parameters:@{} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         
@@ -154,7 +154,7 @@ static CLMTodoDataManager *sharedManager = nil;
 
 - (void)deleteItem:(CLMTodoItem *)item completionBlock:(dataCompletionBlock)completionBlock
 {
-    [self.objectManager deleteObject:nil path:CLMItemsPath parameters:@{@"item_id":item.itemID} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.objectManager deleteObject:nil path:[CLMItemsPath stringByAppendingFormat:@"/%@",item.itemID] parameters:@{} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         
