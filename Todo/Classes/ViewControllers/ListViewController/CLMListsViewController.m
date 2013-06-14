@@ -13,7 +13,7 @@
 #import "CLMTodoDataManager.h"
 #import "UIColor+TodoColors.h"
 
-@interface CLMListsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface CLMListsViewController () <UITableViewDataSource, UITableViewDelegate, CLMListCellDelegate>
 
 @property (nonatomic, strong) CLMTodoViewController *todoViewController;
 @property (nonatomic, strong) IBOutlet UITableView *listsTableView;
@@ -48,7 +48,7 @@
 - (void)skinView
 {
     [self.listsTableView setBackgroundColor:[UIColor clearColor]];
-    [self.view setBackgroundColor:[UIColor tealColor]];
+    [self.view setBackgroundColor:[UIColor creamColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,6 +69,34 @@
     return _todoViewController;
 }
 
+#pragma mark CLMListCellDelegate
+- (void)handleLongPress:(CLMListCell *)cell
+{
+    int index = 0;
+    for (CLMListCell *tempCell in self.listsTableView.visibleCells)
+    {
+        if (tempCell == cell)
+        {
+            return;
+        }
+        [tempCell transitionToDownStateWithDelay:index*.1];
+       
+        index++;
+    }
+}
+
+- (void)handleLongPressUp:(CLMListCell *)cell
+{
+    for (CLMListCell *tempCell in self.listsTableView.visibleCells)
+    {
+        [tempCell transitionToNormalState];
+        if (tempCell == cell)
+        {
+            return;
+        }
+        
+    }
+}
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -83,6 +111,7 @@
     {
         cell = [[CLMListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ListCellIdentifer];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
     }
     
     //Configure Cell
@@ -92,9 +121,22 @@
 }
 
 #pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CLMListCell *cell = (CLMListCell *)[tableView cellForRowAtIndexPath:indexPath];
+    [cell transitionToDownStateWithDelay:0];
+}
 
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CLMListCell *cell = (CLMListCell *)[tableView cellForRowAtIndexPath:indexPath];
+    [cell transitionToNormalState];
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
+    /*
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     CLMTodoList *list = [self.lists objectAtIndex:indexPath.item];
     self.todoViewController.list = list;
@@ -102,6 +144,7 @@
     [self addChildViewController:self.todoViewController];
     [self.view addSubview:self.todoViewController.view];
     [self.todoViewController didMoveToParentViewController:self];
+     */
 }
 
 

@@ -17,7 +17,7 @@ float cf(float number)
 
 + (UIColor *)creamColor
 {
-    return [UIColor colorWithRed:cf(254) green:cf(252) blue:cf(233) alpha:1.0];
+    return [UIColor colorWithRed:cf(244) green:cf(245) blue:cf(188) alpha:1.0];
 }
 
 + (UIColor *)tanColor1
