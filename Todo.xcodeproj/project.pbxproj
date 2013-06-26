@@ -10,6 +10,8 @@
 		33112DE608A2422D86154885 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EDE598726D4BF1815844AD /* libPods.a */; };
 		AF0AF421177A960600C68A7C /* trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF0AF420177A960600C68A7C /* trash@2x.png */; };
 		AF0AF423177A964C00C68A7C /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = AF0AF422177A964C00C68A7C /* trash.png */; };
+		AF0AF426177A9BBD00C68A7C /* shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = AF0AF424177A9BBD00C68A7C /* shadow.png */; };
+		AF0AF427177A9BBD00C68A7C /* shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF0AF425177A9BBD00C68A7C /* shadow@2x.png */; };
 		AF229251174EF9B1000D0662 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF229250174EF9B1000D0662 /* UIKit.framework */; };
 		AF229253174EF9B1000D0662 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF229252174EF9B1000D0662 /* Foundation.framework */; };
 		AF229255174EF9B1000D0662 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF229254174EF9B1000D0662 /* CoreGraphics.framework */; };
@@ -49,6 +51,8 @@
 		82EDE598726D4BF1815844AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0AF420177A960600C68A7C /* trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash@2x.png"; sourceTree = "<group>"; };
 		AF0AF422177A964C00C68A7C /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
+		AF0AF424177A9BBD00C68A7C /* shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow.png; sourceTree = "<group>"; };
+		AF0AF425177A9BBD00C68A7C /* shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow@2x.png"; sourceTree = "<group>"; };
 		AF22924D174EF9B1000D0662 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF229250174EF9B1000D0662 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AF229252174EF9B1000D0662 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -323,6 +327,8 @@
 		AF2292AE175020CC000D0662 /* TodoCells */ = {
 			isa = PBXGroup;
 			children = (
+				AF0AF424177A9BBD00C68A7C /* shadow.png */,
+				AF0AF425177A9BBD00C68A7C /* shadow@2x.png */,
 				AF0AF422177A964C00C68A7C /* trash.png */,
 				AF0AF420177A960600C68A7C /* trash@2x.png */,
 				AF2292AF175020CC000D0662 /* cell_background.png */,
@@ -441,11 +447,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF0AF427177A9BBD00C68A7C /* shadow@2x.png in Resources */,
 				AF22925B174EF9B1000D0662 /* InfoPlist.strings in Resources */,
 				AF0AF421177A960600C68A7C /* trash@2x.png in Resources */,
 				AF229275174EF9EC000D0662 /* Default-568h@2x.png in Resources */,
 				AF229276174EF9EC000D0662 /* Default.png in Resources */,
 				AF0AF423177A964C00C68A7C /* trash.png in Resources */,
+				AF0AF426177A9BBD00C68A7C /* shadow.png in Resources */,
 				AF229277174EF9EC000D0662 /* Default@2x.png in Resources */,
 				AF229284174EFB7C000D0662 /* CLMTodoViewController.xib in Resources */,
 				AF2292A8174F1E0B000D0662 /* CLMTodoItemCell.xib in Resources */,

@@ -16,6 +16,8 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 @interface CLMListCell () 
 @property (nonatomic, weak) IBOutlet UIImageView *backgroundImageView;
 @property (nonatomic, weak) IBOutlet UIView *cellView;
+@property (nonatomic, weak) IBOutlet UIImageView *trashCanImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *checkmarkImageView;
 @end
 
 @implementation CLMListCell
@@ -30,6 +32,7 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
         [self setBackgroundColor:[UIColor clearColor]];
         [self configureFont];
         [self configureGestureRecognizer];
+        [self configureShadow];
     }
     return self;
 }
@@ -47,6 +50,25 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
     //[_titleLabel setFont:[UIFont fontWithName:@"OpenSans-SemiboldItalic" size:14]];
 }
 
+- (void)configureShadow
+{
+    CGPathRef path = [UIBezierPath bezierPathWithRect:self.cellView.frame].CGPath;
+    [self.cellView.layer setShadowPath:path];
+    
+    self.cellView.layer.masksToBounds = NO;
+    self.cellView.layer.shouldRasterize = YES;
+    self.cellView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.cellView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.cellView.layer.shadowRadius = 10;
+    // Don't forget the rasterization scale
+    // I spent days trying to figure out why retina display assets weren't working as expected
+    self.cellView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+}
+
+- (void)layoutSubviews
+{
+    [self configureShadow];
+}
 //- (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer
 //{
 //    if (recognizer.state == UIGestureRecognizerStateBegan)
@@ -100,7 +122,8 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
         [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.cellView.center = CGPointMake( kCenterRestState,
                                                           self.cellView.center.y);
-                        
+            self.trashCanImageView.transform = CGAffineTransformMakeScale(0, 0);
+            self.checkmarkImageView.transform = CGAffineTransformMakeScale(0, 0);
         } completion:^(BOOL finished) {
             
         }];
@@ -121,8 +144,10 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
         self.cellView.center = CGPointMake( newXPosition,
                                             self.cellView.center.y);
         
-        CGFloat fraction = MIN(MAX((newXPosition-kCenterRestState)/kActionThreshold,0.0f), 1.0f);
-
+        CGFloat fraction = MIN(MAX(abs(newXPosition-kCenterRestState)/kActionThreshold,0.0f), 1.0f);
+        
+        self.trashCanImageView.transform = CGAffineTransformMakeScale(fraction, fraction);
+        self.checkmarkImageView.transform = CGAffineTransformMakeScale(fraction, fraction);
         
         [panRecognizer setTranslation:CGPointMake(0, 0) inView:self];
     }

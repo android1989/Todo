@@ -7,9 +7,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CLMListCell">
             <connections>
                 <outlet property="cellView" destination="21" id="5nP-DR-w4o"/>
+                <outlet property="checkmarkImageView" destination="SfX-9A-RKO" id="YZu-gt-2rp"/>
                 <outlet property="mainContentView" destination="21" id="26"/>
                 <outlet property="shadowView" destination="22" id="25"/>
                 <outlet property="titleLabel" destination="19" id="20"/>
+                <outlet property="trashCanImageView" destination="gb6-w1-Lot" id="Sgy-Mk-Jq3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -43,6 +45,10 @@
                     <rect key="frame" x="10" y="5" width="300" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadow.png" id="ITm-1T-P7S">
+                            <rect key="frame" x="-6" y="-4" width="311" height="91"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <view contentMode="scaleToFill" id="22">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -78,18 +84,7 @@
         </view>
     </objects>
     <resources>
+        <image name="shadow.png" width="311" height="91"/>
         <image name="trash.png" width="30" height="34"/>
     </resources>
-    <classes>
-        <class className="CLMListCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CLMListCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="cellView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="mainContentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="shadowView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
 </document>

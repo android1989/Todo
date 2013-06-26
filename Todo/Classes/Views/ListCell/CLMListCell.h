@@ -25,4 +25,8 @@
 
 - (void)handleLongPress:(CLMListCell *)cell;
 - (void)handleLongPressUp:(CLMListCell *)cell;
+
+- (void)cellHasBeenDeleted:(CLMListCell *)cell;
+- (void)cellHasBecomeChecked:(CLMListCell *)cell;
+- (void)cellHasBecomeUnchecked:(CLMListCell *)cell;;
 @end
