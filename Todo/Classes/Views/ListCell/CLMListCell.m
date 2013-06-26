@@ -21,7 +21,7 @@
         // Initialization code
         UIView *view = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] lastObject];
         [self.contentView addSubview:view];
-        
+        [self setBackgroundColor:[UIColor clearColor]];
         [self configureFont];
         [self configureGestureRecognizer];
     }

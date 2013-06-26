@@ -133,10 +133,7 @@
     [cell transitionToNormalState];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    
-    /*
+{    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     CLMTodoList *list = [self.lists objectAtIndex:indexPath.item];
     self.todoViewController.list = list;
@@ -144,7 +141,7 @@
     [self addChildViewController:self.todoViewController];
     [self.view addSubview:self.todoViewController.view];
     [self.todoViewController didMoveToParentViewController:self];
-     */
+     
 }
 
 
