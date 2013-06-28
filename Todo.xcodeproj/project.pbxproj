@@ -44,6 +44,12 @@
 		AF2293CB17512076000D0662 /* CLMListsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2293C917512076000D0662 /* CLMListsViewController.xib */; };
 		AF2293CF17512131000D0662 /* CLMListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2293CE17512131000D0662 /* CLMListCell.m */; };
 		AF2293D1175123A6000D0662 /* CLMListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2293D0175123A5000D0662 /* CLMListCell.xib */; };
+		AFBCC8EF177D33A800461629 /* trash_red.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8ED177D33A800461629 /* trash_red.png */; };
+		AFBCC8F0177D33A800461629 /* trash_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8EE177D33A800461629 /* trash_red@2x.png */; };
+		AFBCC8F3177D364300461629 /* checkmark_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8F1177D364300461629 /* checkmark_green@2x.png */; };
+		AFBCC8F4177D364300461629 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8F2177D364300461629 /* checkmark@2x.png */; };
+		AFBCC8F6177D369900461629 /* checkmark_green.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8F5177D369900461629 /* checkmark_green.png */; };
+		AFBCC8F8177D36A300461629 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8F7177D36A300461629 /* checkmark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +110,12 @@
 		AF2293CD17512131000D0662 /* CLMListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMListCell.h; sourceTree = "<group>"; };
 		AF2293CE17512131000D0662 /* CLMListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMListCell.m; sourceTree = "<group>"; };
 		AF2293D0175123A5000D0662 /* CLMListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMListCell.xib; sourceTree = "<group>"; };
+		AFBCC8ED177D33A800461629 /* trash_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash_red.png; sourceTree = "<group>"; };
+		AFBCC8EE177D33A800461629 /* trash_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash_red@2x.png"; sourceTree = "<group>"; };
+		AFBCC8F1177D364300461629 /* checkmark_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark_green@2x.png"; sourceTree = "<group>"; };
+		AFBCC8F2177D364300461629 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark@2x.png"; sourceTree = "<group>"; };
+		AFBCC8F5177D369900461629 /* checkmark_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark_green.png; sourceTree = "<group>"; };
+		AFBCC8F7177D36A300461629 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +339,12 @@
 		AF2292AE175020CC000D0662 /* TodoCells */ = {
 			isa = PBXGroup;
 			children = (
+				AFBCC8F7177D36A300461629 /* checkmark.png */,
+				AFBCC8F5177D369900461629 /* checkmark_green.png */,
+				AFBCC8F1177D364300461629 /* checkmark_green@2x.png */,
+				AFBCC8F2177D364300461629 /* checkmark@2x.png */,
+				AFBCC8ED177D33A800461629 /* trash_red.png */,
+				AFBCC8EE177D33A800461629 /* trash_red@2x.png */,
 				AF0AF424177A9BBD00C68A7C /* shadow.png */,
 				AF0AF425177A9BBD00C68A7C /* shadow@2x.png */,
 				AF0AF422177A964C00C68A7C /* trash.png */,
@@ -449,7 +467,10 @@
 			files = (
 				AF0AF427177A9BBD00C68A7C /* shadow@2x.png in Resources */,
 				AF22925B174EF9B1000D0662 /* InfoPlist.strings in Resources */,
+				AFBCC8EF177D33A800461629 /* trash_red.png in Resources */,
 				AF0AF421177A960600C68A7C /* trash@2x.png in Resources */,
+				AFBCC8F6177D369900461629 /* checkmark_green.png in Resources */,
+				AFBCC8F3177D364300461629 /* checkmark_green@2x.png in Resources */,
 				AF229275174EF9EC000D0662 /* Default-568h@2x.png in Resources */,
 				AF229276174EF9EC000D0662 /* Default.png in Resources */,
 				AF0AF423177A964C00C68A7C /* trash.png in Resources */,
@@ -459,8 +480,11 @@
 				AF2292A8174F1E0B000D0662 /* CLMTodoItemCell.xib in Resources */,
 				AF2292AB174F2144000D0662 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				AF2292B1175020CC000D0662 /* cell_background.png in Resources */,
+				AFBCC8F4177D364300461629 /* checkmark@2x.png in Resources */,
 				AF2292B2175020CC000D0662 /* cell_background@2x.png in Resources */,
 				AF2292B817507DDB000D0662 /* CLMEditItemViewController.xib in Resources */,
+				AFBCC8F0177D33A800461629 /* trash_red@2x.png in Resources */,
+				AFBCC8F8177D36A300461629 /* checkmark.png in Resources */,
 				AF2293CB17512076000D0662 /* CLMListsViewController.xib in Resources */,
 				AF2293D1175123A6000D0662 /* CLMListCell.xib in Resources */,
 			);

@@ -19,7 +19,9 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 @property (nonatomic, weak) IBOutlet UIView *leftView;
 @property (nonatomic, weak) IBOutlet UIView *rightView;
 @property (nonatomic, weak) IBOutlet UIImageView *trashCanImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *trashCanRedImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *checkmarkImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *checkmarkGreenImageView;
 @end
 
 @implementation CLMListCell
@@ -140,14 +142,41 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 
 	
 }
+
+- (void)animateCheck
+{
+	    
+    self.checkmarkGreenImageView.frame = [self convertRect:self.checkmarkGreenImageView.frame fromView:self.rightView];
+	[self.checkmarkGreenImageView removeFromSuperview];
+    [self addSubview:self.checkmarkGreenImageView];
+    
+	self.leftView.alpha = 0.0;
+	self.rightView.alpha = 0.0;
+	//All fingers are lifted.
+	[UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+		self.cellView.center = CGPointMake( kCenterRestState,
+										   self.cellView.center.y);
+        CGPoint newCenter = self.checkmarkGreenImageView.center;
+        newCenter.x = CGRectGetMinX(self.cellView.frame)+15;
+        newCenter.y = CGRectGetMinY(self.cellView.frame)+8;
+        self.checkmarkGreenImageView.center = newCenter;
+	} completion:^(BOOL finished) {
+        self.leftView.alpha = 1.0;
+        self.rightView.alpha = 1.0;
+	}];
+    
+	
+}
 #pragma mark - UIPanGestureRecognizer
 
 - (void)handlePanGestureRecognizer:(UIPanGestureRecognizer *)panRecognizer
 {
     if(panRecognizer.state == UIGestureRecognizerStateEnded)
     {
-		if (self.cellView.center.x <= (kLeftThreshold)) {
+		if (self.cellView.center.x <= (kRightThreshold)) {
 			[self animateDeletion];
+		}else if (self.cellView.center.x >= (kLeftThreshold)) {
+			[self animateCheck];
 		}else{
 			//All fingers are lifted.
 			[UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -179,9 +208,12 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
         
         CGFloat fraction = MIN(MAX(abs(newXPosition-kCenterRestState)/kActionThreshold,0.0f), 1.0f);
         
+        self.trashCanRedImageView.transform = CGAffineTransformMakeScale(fraction, fraction);
         self.trashCanImageView.transform = CGAffineTransformMakeScale(fraction, fraction);
+        self.trashCanImageView.alpha = 1-fraction;
         self.checkmarkImageView.transform = CGAffineTransformMakeScale(fraction, fraction);
-        
+        self.checkmarkGreenImageView.transform = CGAffineTransformMakeScale(fraction, fraction);
+        self.checkmarkImageView.alpha = 1-fraction;
         [panRecognizer setTranslation:CGPointMake(0, 0) inView:self];
     }
     
