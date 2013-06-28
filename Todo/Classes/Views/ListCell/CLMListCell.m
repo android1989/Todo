@@ -16,6 +16,8 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 @interface CLMListCell () 
 @property (nonatomic, weak) IBOutlet UIImageView *backgroundImageView;
 @property (nonatomic, weak) IBOutlet UIView *cellView;
+@property (nonatomic, weak) IBOutlet UIView *leftView;
+@property (nonatomic, weak) IBOutlet UIView *rightView;
 @property (nonatomic, weak) IBOutlet UIImageView *trashCanImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *checkmarkImageView;
 @end
@@ -112,21 +114,52 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 //    }];
 //}
 
+- (void)animateDeletion
+{
+	
+	[self.trashCanImageView removeFromSuperview];
+	[self addSubview:self.trashCanImageView];
+	self.trashCanImageView.center = CGPointMake(self.trashCanImageView.center.x+160, self.rightView.center.y);
+	
+	self.leftView.alpha = 0.0;
+	self.rightView.alpha = 0.0;
+	//All fingers are lifted.
+	[UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+		self.cellView.center = CGPointMake( kCenterRestState,
+										   self.cellView.center.y);
+	} completion:^(BOOL finished) {
+		[UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+			
+			self.cellView.transform = CGAffineTransformMakeScale(0, 0);
+			self.cellView.center = CGPointMake(self.trashCanImageView.center.x,
+											   self.trashCanImageView.center.y);
+		} completion:^(BOOL finished) {
+			[self.delegate cellHasBeenDeleted:self];
+		}];
+	}];
+
+	
+}
 #pragma mark - UIPanGestureRecognizer
 
 - (void)handlePanGestureRecognizer:(UIPanGestureRecognizer *)panRecognizer
 {
     if(panRecognizer.state == UIGestureRecognizerStateEnded)
     {
-        //All fingers are lifted.
-        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.cellView.center = CGPointMake( kCenterRestState,
-                                                          self.cellView.center.y);
-            self.trashCanImageView.transform = CGAffineTransformMakeScale(0, 0);
-            self.checkmarkImageView.transform = CGAffineTransformMakeScale(0, 0);
-        } completion:^(BOOL finished) {
-            
-        }];
+		if (self.cellView.center.x <= (kLeftThreshold)) {
+			[self animateDeletion];
+		}else{
+			//All fingers are lifted.
+			[UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+				self.cellView.center = CGPointMake( kCenterRestState,
+												   self.cellView.center.y);
+				self.trashCanImageView.transform = CGAffineTransformMakeScale(0, 0);
+				self.checkmarkImageView.transform = CGAffineTransformMakeScale(0, 0);
+			} completion:^(BOOL finished) {
+				
+			}];
+		}
+        
 
         return;
     }else{

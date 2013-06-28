@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) CLMTodoViewController *todoViewController;
 @property (nonatomic, strong) IBOutlet UITableView *listsTableView;
-@property (nonatomic, strong) NSArray *lists;
+@property (nonatomic, strong) NSMutableArray *lists;
 
 @end
 
@@ -143,5 +143,13 @@
      
 }
 
-
+-(void)cellHasBeenDeleted:(CLMListCell *)cell
+{
+	NSIndexPath *indexPath = [self.listsTableView indexPathForCell:cell];
+	[self.lists removeObjectAtIndex:indexPath.row];
+	
+	[self.listsTableView beginUpdates];
+	[self.listsTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	[self.listsTableView endUpdates];
+}
 @end
