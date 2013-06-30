@@ -33,6 +33,7 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
         // Initialization code
         UIView *view = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] lastObject];
         [self.contentView addSubview:view];
+        self.frame = view.frame;
         [self setBackgroundColor:[UIColor clearColor]];
         [self configureFont];
         [self configureGestureRecognizer];
@@ -46,7 +47,7 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
     //UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     //[self addGestureRecognizer:longPressGestureRecognizer];
     
-    [self addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestureRecognizer:)]];
+    //[self addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestureRecognizer:)]];
 }
 
 - (void)configureFont
@@ -145,8 +146,6 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 
 - (void)animateCheck
 {
-	    
-    self.checkmarkGreenImageView.frame = [self convertRect:self.checkmarkGreenImageView.frame fromView:self.rightView];
 	[self.checkmarkGreenImageView removeFromSuperview];
     [self addSubview:self.checkmarkGreenImageView];
     
@@ -157,8 +156,8 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 		self.cellView.center = CGPointMake( kCenterRestState,
 										   self.cellView.center.y);
         CGPoint newCenter = self.checkmarkGreenImageView.center;
-        newCenter.x = CGRectGetMinX(self.cellView.frame)+15;
-        newCenter.y = CGRectGetMinY(self.cellView.frame)+8;
+        newCenter.x = CGRectGetMinX(self.leftView.frame)+15;
+        newCenter.y = CGRectGetMinY(self.leftView.frame)+8;
         self.checkmarkGreenImageView.center = newCenter;
 	} completion:^(BOOL finished) {
         self.leftView.alpha = 1.0;

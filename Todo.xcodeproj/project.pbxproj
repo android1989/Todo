@@ -44,6 +44,7 @@
 		AF2293CB17512076000D0662 /* CLMListsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2293C917512076000D0662 /* CLMListsViewController.xib */; };
 		AF2293CF17512131000D0662 /* CLMListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2293CE17512131000D0662 /* CLMListCell.m */; };
 		AF2293D1175123A6000D0662 /* CLMListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2293D0175123A5000D0662 /* CLMListCell.xib */; };
+		AF89D1751780936100B7E7F6 /* CLMPinchGestureTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF89D174178091FA00B7E7F6 /* CLMPinchGestureTableView.m */; };
 		AFBCC8EF177D33A800461629 /* trash_red.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8ED177D33A800461629 /* trash_red.png */; };
 		AFBCC8F0177D33A800461629 /* trash_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8EE177D33A800461629 /* trash_red@2x.png */; };
 		AFBCC8F3177D364300461629 /* checkmark_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8F1177D364300461629 /* checkmark_green@2x.png */; };
@@ -110,6 +111,8 @@
 		AF2293CD17512131000D0662 /* CLMListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMListCell.h; sourceTree = "<group>"; };
 		AF2293CE17512131000D0662 /* CLMListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMListCell.m; sourceTree = "<group>"; };
 		AF2293D0175123A5000D0662 /* CLMListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMListCell.xib; sourceTree = "<group>"; };
+		AF89D173178091FA00B7E7F6 /* CLMPinchGestureTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMPinchGestureTableView.h; sourceTree = "<group>"; };
+		AF89D174178091FA00B7E7F6 /* CLMPinchGestureTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLMPinchGestureTableView.m; sourceTree = "<group>"; };
 		AFBCC8ED177D33A800461629 /* trash_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash_red.png; sourceTree = "<group>"; };
 		AFBCC8EE177D33A800461629 /* trash_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash_red@2x.png"; sourceTree = "<group>"; };
 		AFBCC8F1177D364300461629 /* checkmark_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark_green@2x.png"; sourceTree = "<group>"; };
@@ -263,6 +266,7 @@
 		AF229285174EFC6E000D0662 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				AF89D172178091D300B7E7F6 /* GestureRecognizers */,
 				AF229297174F01E4000D0662 /* Categories */,
 				AF229286174EFC7D000D0662 /* CLMConstants.h */,
 				AF229287174EFC7D000D0662 /* CLMConstants.m */,
@@ -411,6 +415,15 @@
 			path = ListCell;
 			sourceTree = "<group>";
 		};
+		AF89D172178091D300B7E7F6 /* GestureRecognizers */ = {
+			isa = PBXGroup;
+			children = (
+				AF89D173178091FA00B7E7F6 /* CLMPinchGestureTableView.h */,
+				AF89D174178091FA00B7E7F6 /* CLMPinchGestureTableView.m */,
+			);
+			path = GestureRecognizers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -528,6 +541,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF89D1751780936100B7E7F6 /* CLMPinchGestureTableView.m in Sources */,
 				AF22925D174EF9B1000D0662 /* main.m in Sources */,
 				AF229274174EF9EC000D0662 /* CLMAppDelegate.m in Sources */,
 				AF22927E174EFA32000D0662 /* CLMApplicationViewController.m in Sources */,

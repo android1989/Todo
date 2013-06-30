@@ -12,13 +12,23 @@
 #import "CLMTodoViewController.h"
 #import "CLMTodoDataManager.h"
 #import "UIColor+TodoColors.h"
+#import "CLMTodoItem.h"
+#import "CLMPinchGestureTableView.h"
 
-@interface CLMListsViewController () <UITableViewDataSource, UITableViewDelegate, CLMListCellDelegate>
+static const float kPullActionContentOffset = -50.0f;
+
+@interface CLMListsViewController () <UITableViewDataSource, UITableViewDelegate, CLMListCellDelegate, CLMPinchGestureTableViewDelegate>
 
 @property (nonatomic, strong) CLMTodoViewController *todoViewController;
 @property (nonatomic, strong) IBOutlet UITableView *listsTableView;
 @property (nonatomic, strong) NSMutableArray *lists;
 
+//Scroll View Add Item
+@property (nonatomic, assign) BOOL pullInProgress;
+@property (nonatomic, strong) CLMListCell *placeholderCell;
+
+//Pinch
+@property (nonatomic, strong) CLMPinchGestureTableView *pinchGestureDelegate;
 @end
 
 @implementation CLMListsViewController
@@ -41,8 +51,11 @@
         weakSelf.lists = data;
         [weakSelf.listsTableView reloadData];
     }];
-    
+   
     [self skinView];
+    
+    self.pinchGestureDelegate = [[CLMPinchGestureTableView alloc] initWithTableView:self.listsTableView];
+    self.pinchGestureDelegate.delegate = self;
 }
 
 - (void)skinView
@@ -67,6 +80,15 @@
     }
     
     return _todoViewController;
+}
+
+- (CLMListCell *)placeholderCell
+{
+    if (!_placeholderCell) {
+        _placeholderCell = [[CLMListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ListCellIdentifer];
+    }
+    
+    return _placeholderCell;
 }
 
 //#pragma mark CLMListCellDelegate
@@ -97,6 +119,7 @@
 //        
 //    }
 //}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -116,7 +139,7 @@
     
     //Configure Cell
     CLMTodoList *item = [self.lists objectAtIndex:indexPath.item];
-    cell.titleLabel.text = item.title;    
+    cell.titleLabel.text = item.title;
     return cell;
 }
 
@@ -143,6 +166,89 @@
      
 }
 
+#pragma mark - UIScrollViewDelegate
+//might want to refactor into seperate table view
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    self.pullInProgress = scrollView.contentOffset.y <= 0;
+    
+    if (self.pullInProgress)
+    {
+        [self.listsTableView insertSubview:self.placeholderCell atIndex:0];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (self.pullInProgress)
+    {
+        CGFloat percentComplete = (scrollView.contentOffset.y - kPullActionContentOffset)/kPullActionContentOffset;
+        self.placeholderCell.alpha = percentComplete +.5;
+        
+        CGRect oldFrame = self.placeholderCell.frame;
+        oldFrame.origin.y = -CGRectGetHeight(oldFrame);
+        self.placeholderCell.frame = oldFrame;
+        if (percentComplete > 1)
+        {
+            self.placeholderCell.titleLabel.text = @"Release for New Item";
+        }
+        else if (percentComplete > .5)
+        {
+            self.placeholderCell.titleLabel.text = @"Almost There";
+        }else{
+            self.placeholderCell.titleLabel.text = @"New Item";
+        }
+    }
+    else
+    {
+        self.pullInProgress = scrollView.contentOffset.y <= 0;
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (self.pullInProgress)
+    {
+        
+        CGFloat percentComplete = (scrollView.contentOffset.y - kPullActionContentOffset)/kPullActionContentOffset;
+        
+        if (percentComplete > 1)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CLMTodoList *cell = [[CLMTodoList alloc] init];
+                cell.title = @"New Item";
+                [self.lists insertObject:cell atIndex:0];
+                
+                CGPoint contentOffset = self.listsTableView.contentOffset;
+                contentOffset.y += 90;
+                [self.listsTableView reloadData];
+
+                [self.listsTableView setContentOffset:contentOffset animated:NO];
+                [self.listsTableView setContentOffset:CGPointZero animated:YES];
+                [self.placeholderCell removeFromSuperview];
+            });
+            self.pullInProgress = NO;
+        }
+    }
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    if (self.pullInProgress)
+    {
+        
+        CGFloat percentComplete = (scrollView.contentOffset.y - kPullActionContentOffset)/kPullActionContentOffset;
+        
+        if (percentComplete > 1)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [scrollView setContentOffset:CGPointMake(0, -90) animated:YES];
+            });      
+            return;
+        }
+    }    
+}
+
 -(void)cellHasBeenDeleted:(CLMListCell *)cell
 {
 	NSIndexPath *indexPath = [self.listsTableView indexPathForCell:cell];
@@ -151,5 +257,12 @@
 	[self.listsTableView beginUpdates];
 	[self.listsTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 	[self.listsTableView endUpdates];
+}
+
+- (void)addNewItemAtIndex:(NSInteger)index
+{
+    CLMTodoList *cell = [[CLMTodoList alloc] init];
+    cell.title = @"New Item";
+    [self.lists insertObject:cell atIndex:index];
 }
 @end
