@@ -13,7 +13,7 @@ static const CGFloat kCenterRestState = 160;
 static const CGFloat kLeftThreshold = kCenterRestState + kActionThreshold;
 static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 
-@interface CLMListCell () 
+@interface CLMListCell () <UIGestureRecognizerDelegate>
 @property (nonatomic, weak) IBOutlet UIImageView *backgroundImageView;
 @property (nonatomic, weak) IBOutlet UIView *cellView;
 @property (nonatomic, weak) IBOutlet UIView *leftView;
@@ -22,6 +22,7 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 @property (nonatomic, weak) IBOutlet UIImageView *trashCanRedImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *checkmarkImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *checkmarkGreenImageView;
+@property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 @end
 
 @implementation CLMListCell
@@ -46,8 +47,9 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 {
     //UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     //[self addGestureRecognizer:longPressGestureRecognizer];
-    
-    //[self addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestureRecognizer:)]];
+    self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestureRecognizer:)];
+    self.panGestureRecognizer.delegate = self;
+    [self addGestureRecognizer:self.panGestureRecognizer];
 }
 
 - (void)configureFont
@@ -217,4 +219,18 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
     }
     
 }
+
+-(BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    CGPoint translation = [gestureRecognizer translationInView:self];
+    
+    // Check for horizontal gesture
+    if (fabsf(translation.x) > fabsf(translation.y))
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
 @end
