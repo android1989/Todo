@@ -9,7 +9,35 @@
 #import "CLMTodoList.h"
 #import "CLMTodoDataManager.h"
 
+static NSString * const kIdKey = @"IdKey";
+static NSString * const kTitleKey = @"TitleKey";
+static NSString * const kItemsKey = @"ItemsKey";
+
 @implementation CLMTodoList
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self)
+    {
+        self.listID = [aDecoder decodeObjectForKey:kIdKey];
+        self.title = [aDecoder decodeObjectForKey:kTitleKey];
+        self.items = [aDecoder decodeObjectForKey:kItemsKey];
+        if (!self.items)
+        {
+            self.items = [[NSMutableArray alloc] init];
+        }
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.listID forKey:kIdKey];
+    [aCoder encodeObject:self.title forKey:kTitleKey];
+    [aCoder encodeObject:self.items forKey:kItemsKey];
+}
+
 
 - (void)addTodoItem:(CLMTodoItem *)newItem
 {

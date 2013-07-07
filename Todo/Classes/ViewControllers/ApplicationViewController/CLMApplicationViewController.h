@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CLMListsViewController.h"
+#import "CLMMenuViewController.h"
 
 typedef void(^ApplicationLaunchBlock)(void);
 @interface CLMApplicationViewController : UIViewController
@@ -15,4 +16,5 @@ typedef void(^ApplicationLaunchBlock)(void);
 @property (nonatomic, copy) ApplicationLaunchBlock applicationLaunchBlock;
 
 @property (nonatomic, strong) CLMListsViewController *listsViewController;
+@property (nonatomic, strong) CLMMenuViewController *menuViewController;
 @end

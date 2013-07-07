@@ -1,46 +1,92 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4457.9" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4457.9" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.9"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CLMTodoItemCell">
-            <connections>
-                <outlet property="backgroundImageView" destination="12" id="13"/>
-                <outlet property="strikeThrough" destination="14" id="15"/>
-                <outlet property="titleField" destination="4" id="10"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CLMTodoItemCell"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="3">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+        <view contentMode="scaleToFill" id="W7K-wn-hfR">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView contentMode="scaleToFill" image="cell_background.png" id="12">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <view contentMode="scaleToFill" id="Nvs-MV-Q2j" userLabel="Delete View">
+                    <rect key="frame" x="10" y="5" width="150" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <view contentMode="scaleToFill" id="14">
-                    <rect key="frame" x="20" y="34" width="0.0" height="2"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark_green.png" id="O9Y-6o-Z7S">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.png" id="pbk-OZ-erc">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.95294117649999999" green="0.57647058819999997" blue="0.30588235289999999" alpha="1" colorSpace="deviceRGB"/>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="4">
-                    <rect key="frame" x="20" y="13" width="280" height="44"/>
+                <view contentMode="scaleToFill" id="hFe-u7-bNW" userLabel="Delete View">
+                    <rect key="frame" x="160" y="5" width="150" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="11"/>
-                    </connections>
-                </textField>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash_red.png" id="EaI-cY-mfL">
+                            <rect key="frame" x="70" y="0.0" width="80" height="80"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash.png" id="WWY-cy-5cp">
+                            <rect key="frame" x="70" y="0.0" width="80" height="80"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.45098039220000002" green="0.3294117647" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" id="R4R-QT-GmP">
+                    <rect key="frame" x="10" y="5" width="300" height="80"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadow.png" id="JBZ-HT-SFE">
+                            <rect key="frame" x="-6" y="-4" width="311" height="91"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" id="mp7-d9-wIk">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.95686274510000002" green="0.83921568629999999" blue="0.32549019610000002" alpha="1" colorSpace="deviceRGB"/>
+                        </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="This is totally a mulit-line label " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YLG-0z-QK7">
+                            <rect key="frame" x="10" y="18" width="202" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.45098039220000002" green="0.3294117647" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" id="6nn-0q-GoH">
+                            <rect key="frame" x="220" y="0.0" width="80" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="888" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zis-K9-yd9">
+                                    <rect key="frame" x="5" y="29" width="70" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                    <color key="textColor" red="0.45098039220000002" green="0.3294117647" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.85490196080000003" green="0.76078431369999999" blue="0.2901960784" alpha="1" colorSpace="deviceRGB"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.83921568629999999" blue="0.32549019610000002" alpha="1" colorSpace="deviceRGB"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="cell_background.png" width="160" height="27.501909255981445"/>
+        <image name="checkmark.png" width="31" height="26"/>
+        <image name="checkmark_green.png" width="31" height="26"/>
+        <image name="shadow.png" width="311" height="91"/>
+        <image name="trash.png" width="30" height="34"/>
+        <image name="trash_red.png" width="30" height="34"/>
     </resources>
 </document>

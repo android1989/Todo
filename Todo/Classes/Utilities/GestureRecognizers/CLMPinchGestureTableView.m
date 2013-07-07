@@ -139,7 +139,7 @@ typedef struct CLMPinchTouches {
         }else{
             self.placeholderCell.titleLabel.text = @"New Item";
         }
-        CGFloat scalePercent = MAX(.5, MIN(percentComplete, 1));
+        CGFloat scalePercent = MAX(.5, MIN(percentComplete, 1.05));
         self.placeholderCell.transform = CGAffineTransformMakeScale(scalePercent, scalePercent);
         self.placeholderCell.alpha = percentComplete;
     }
@@ -173,6 +173,8 @@ typedef struct CLMPinchTouches {
                                          cell.transform = CGAffineTransformMakeTranslation(0, 45);
                                      }
                                  }
+                                 
+                                 self.placeholderCell.transform = CGAffineTransformIdentity;
                              }
                              completion:^(BOOL finished){
                                  

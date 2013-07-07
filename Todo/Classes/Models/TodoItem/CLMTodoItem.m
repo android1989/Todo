@@ -9,6 +9,10 @@
 #import "CLMTodoItem.h"
 #import "CLMTodoDataManager.h"
 
+static NSString * const kIdKey = @"IdKey";
+static NSString * const kTitleKey = @"TitleKey";
+static NSString * const kCheckedKey = @"CheckedKey";
+
 @implementation CLMTodoItem
 
 - (id)init
@@ -20,6 +24,25 @@
         _checked = NO;
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self)
+    {
+        self.itemID = [aDecoder decodeObjectForKey:kIdKey];
+        self.title = [aDecoder decodeObjectForKey:kTitleKey];
+        self.checked = [aDecoder decodeBoolForKey:kCheckedKey];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.itemID forKey:kIdKey];
+    [aCoder encodeObject:self.title forKey:kTitleKey];
+    [aCoder encodeBool:self.checked forKey:kCheckedKey];
 }
 
 - (void)updateChecked:(BOOL)checked

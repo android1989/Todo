@@ -16,7 +16,7 @@ typedef void (^dataCompletionBlock)(id data);
 
 //singleton method
 + (instancetype)sharedManager;
-
+- (void)saveData;
 - (void)fetchLists:(dataCompletionBlock)completionBlock;
 - (void)fetchList:(CLMTodoList *)list completionBlock:(dataCompletionBlock)completionBlock;
 - (void)postNewList:(CLMTodoList *)list completionBlock:(dataCompletionBlock)completionBlock;

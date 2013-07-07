@@ -11,14 +11,21 @@
 #import "CLMTodoItem.h"
 #import "UITableView+CellSwitch.h"
 #import "UIColor+TodoColors.h"
-#import "CLMTodoItemCell.h"
+#import "CLMListCell.h"
 #import "CLMEditItemViewController.h"
 #import "CLMTodoList.h"
 
-@interface CLMTodoViewController () <UITableViewDataSource, UITableViewDelegate, CLMEditItemViewControllerDelegate, CLMTodoItemCellDelegate>
+static const float kPullActionContentOffset = -50.0f;
+
+@interface CLMTodoViewController () <UITableViewDataSource, UITableViewDelegate, CLMEditItemViewControllerDelegate>
 
 @property (nonatomic, strong) CLMEditItemViewController *editViewController;
 @property (nonatomic, strong) IBOutlet UITableView *itemsTableView;
+
+//Scroll View Add Item
+@property (nonatomic, assign) BOOL pullInProgress;
+@property (nonatomic, strong) CLMListCell *placeholderCell;
+
 @end
 
 @implementation CLMTodoViewController
@@ -77,6 +84,15 @@
     return _editViewController;
 }
 
+- (CLMListCell *)placeholderCell
+{
+    if (!_placeholderCell) {
+        _placeholderCell = [[CLMListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ListCellIdentifer];
+    }
+    
+    return _placeholderCell;
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -85,18 +101,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CLMTodoItemCell *cell = (CLMTodoItemCell *)[tableView dequeueReusableCellWithIdentifier:TodoCellIdentifer];
+    CLMListCell *cell = (CLMListCell *)[tableView dequeueReusableCellWithIdentifier:ListCellIdentifer];
     
     if (!cell)
     {
-        cell = [[CLMTodoItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TodoCellIdentifer];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell = [[CLMListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ListCellIdentifer];
     }
-    cell.delegate = self;
     
     //Configure Cell
     CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
-    [cell configureForItem:item];
+    cell.titleLabel.text = item.title;
         
     return cell;
 }
@@ -120,30 +134,112 @@
 //    }
 }
 
+#pragma mark - UIScrollViewDelegate
+//might want to refactor into seperate table view
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    self.pullInProgress = scrollView.contentOffset.y <= 0;
+    
+    if (self.pullInProgress)
+    {
+        [self.itemsTableView insertSubview:self.placeholderCell atIndex:0];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (self.pullInProgress)
+    {
+        CGFloat percentComplete = (scrollView.contentOffset.y - kPullActionContentOffset)/kPullActionContentOffset;
+        self.placeholderCell.alpha = percentComplete +.5;
+        
+        CGRect oldFrame = self.placeholderCell.frame;
+        oldFrame.origin.y = -CGRectGetHeight(oldFrame);
+        self.placeholderCell.frame = oldFrame;
+        if (percentComplete > 1)
+        {
+            self.placeholderCell.titleLabel.text = @"Release for New Item";
+        }
+        else if (percentComplete > .5)
+        {
+            self.placeholderCell.titleLabel.text = @"Almost There";
+        }else{
+            self.placeholderCell.titleLabel.text = @"New Item";
+        }
+    }
+    else
+    {
+        self.pullInProgress = scrollView.contentOffset.y <= 0;
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (self.pullInProgress)
+    {
+        
+        CGFloat percentComplete = (scrollView.contentOffset.y - kPullActionContentOffset)/kPullActionContentOffset;
+        
+        if (percentComplete > 1)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CLMTodoItem *cell = [[CLMTodoItem alloc] init];
+                cell.title = @"New Item";
+                [self.list.items insertObject:cell atIndex:0];
+                
+                CGPoint contentOffset = self.itemsTableView.contentOffset;
+                contentOffset.y += 90;
+                [self.itemsTableView reloadData];
+                [self.itemsTableView setContentOffset:contentOffset animated:NO];
+                [self.itemsTableView setContentOffset:CGPointZero animated:YES];
+                [self.placeholderCell removeFromSuperview];
+            });
+            self.pullInProgress = NO;
+        }
+    }
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    if (self.pullInProgress)
+    {
+        
+        CGFloat percentComplete = (scrollView.contentOffset.y - kPullActionContentOffset)/kPullActionContentOffset;
+        
+        if (percentComplete > 1)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [scrollView setContentOffset:CGPointMake(0, -90) animated:YES];
+            });
+            return;
+        }
+    }
+}
+
 #pragma mark - Helpers
 
-#pragma mark - CLMTodoItemCellDelegate
--(void)cellHasBecomeUnchecked:(CLMTodoItemCell *)cell
-{
-    NSIndexPath *indexPath = [self.itemsTableView indexPathForCell:cell];
-    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
-    [item updateChecked:NO];
-}
-
-- (void)cellHasBecomeChecked:(CLMTodoItemCell *)cell
-{
-    NSIndexPath *indexPath = [self.itemsTableView indexPathForCell:cell];
-    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
-    [item updateChecked:YES];
-}
-
-- (void)cellHasBeenDeleted:(CLMTodoItemCell *)cell
-{
-    NSIndexPath *indexPath = [self.itemsTableView indexPathForCell:cell];
-    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
-    [self.list removeTodoItem:item];
-    [self.itemsTableView reloadData];
-}
+//#pragma mark - CLMTodoItemCellDelegate
+//-(void)cellHasBecomeUnchecked:(CLMTodoItemCell *)cell
+//{
+//    NSIndexPath *indexPath = [self.itemsTableView indexPathForCell:cell];
+//    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
+//    [item updateChecked:NO];
+//}
+//
+//- (void)cellHasBecomeChecked:(CLMTodoItemCell *)cell
+//{
+//    NSIndexPath *indexPath = [self.itemsTableView indexPathForCell:cell];
+//    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
+//    [item updateChecked:YES];
+//}
+//
+//- (void)cellHasBeenDeleted:(CLMTodoItemCell *)cell
+//{
+//    NSIndexPath *indexPath = [self.itemsTableView indexPathForCell:cell];
+//    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
+//    [self.list removeTodoItem:item];
+//    [self.itemsTableView reloadData];
+//}
 
 #pragma mark - CLMEditItemViewControllerDelegate
 

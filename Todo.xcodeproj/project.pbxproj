@@ -51,6 +51,10 @@
 		AFBCC8F4177D364300461629 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8F2177D364300461629 /* checkmark@2x.png */; };
 		AFBCC8F6177D369900461629 /* checkmark_green.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8F5177D369900461629 /* checkmark_green.png */; };
 		AFBCC8F8177D36A300461629 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8F7177D36A300461629 /* checkmark.png */; };
+		AFE7D2E31789B8C8000F81C3 /* menu_chip.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE7D2E21789B8C8000F81C3 /* menu_chip.png */; };
+		AFE7D2E41789DE1B000F81C3 /* CLMAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE7D2DC17890EBB000F81C3 /* CLMAnimations.m */; };
+		AFE7D2E51789DE21000F81C3 /* CLMMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE7D2DF178928B4000F81C3 /* CLMMenuViewController.m */; };
+		AFE7D2E61789E0FB000F81C3 /* CLMMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFE7D2E0178928B4000F81C3 /* CLMMenuViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +123,12 @@
 		AFBCC8F2177D364300461629 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark@2x.png"; sourceTree = "<group>"; };
 		AFBCC8F5177D369900461629 /* checkmark_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark_green.png; sourceTree = "<group>"; };
 		AFBCC8F7177D36A300461629 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
+		AFE7D2DB17890EBB000F81C3 /* CLMAnimations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMAnimations.h; sourceTree = "<group>"; };
+		AFE7D2DC17890EBB000F81C3 /* CLMAnimations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLMAnimations.m; sourceTree = "<group>"; };
+		AFE7D2DE178928B4000F81C3 /* CLMMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMMenuViewController.h; sourceTree = "<group>"; };
+		AFE7D2DF178928B4000F81C3 /* CLMMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLMMenuViewController.m; sourceTree = "<group>"; };
+		AFE7D2E0178928B4000F81C3 /* CLMMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CLMMenuViewController.xib; sourceTree = "<group>"; };
+		AFE7D2E21789B8C8000F81C3 /* menu_chip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_chip.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +237,7 @@
 		AF229279174EFA06000D0662 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AFE7D2DD178928A4000F81C3 /* MenuViewController */,
 				AF2293C61751205A000D0662 /* ListViewController */,
 				AF2292B317507DC7000D0662 /* EditItemViewController */,
 				AF22927F174EFB6C000D0662 /* TodoViewController */,
@@ -266,6 +277,7 @@
 		AF229285174EFC6E000D0662 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				AFE7D2DA17890EAE000F81C3 /* Animations */,
 				AF89D172178091D300B7E7F6 /* GestureRecognizers */,
 				AF229297174F01E4000D0662 /* Categories */,
 				AF229286174EFC7D000D0662 /* CLMConstants.h */,
@@ -335,6 +347,7 @@
 		AF2292AD175020CC000D0662 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AFE7D2E11789B8C8000F81C3 /* Menu */,
 				AF2292AE175020CC000D0662 /* TodoCells */,
 			);
 			path = Images;
@@ -424,6 +437,33 @@
 			path = GestureRecognizers;
 			sourceTree = "<group>";
 		};
+		AFE7D2DA17890EAE000F81C3 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				AFE7D2DB17890EBB000F81C3 /* CLMAnimations.h */,
+				AFE7D2DC17890EBB000F81C3 /* CLMAnimations.m */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		AFE7D2DD178928A4000F81C3 /* MenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AFE7D2DE178928B4000F81C3 /* CLMMenuViewController.h */,
+				AFE7D2DF178928B4000F81C3 /* CLMMenuViewController.m */,
+				AFE7D2E0178928B4000F81C3 /* CLMMenuViewController.xib */,
+			);
+			path = MenuViewController;
+			sourceTree = "<group>";
+		};
+		AFE7D2E11789B8C8000F81C3 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				AFE7D2E21789B8C8000F81C3 /* menu_chip.png */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -478,6 +518,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFE7D2E61789E0FB000F81C3 /* CLMMenuViewController.xib in Resources */,
 				AF0AF427177A9BBD00C68A7C /* shadow@2x.png in Resources */,
 				AF22925B174EF9B1000D0662 /* InfoPlist.strings in Resources */,
 				AFBCC8EF177D33A800461629 /* trash_red.png in Resources */,
@@ -485,6 +526,7 @@
 				AFBCC8F6177D369900461629 /* checkmark_green.png in Resources */,
 				AFBCC8F3177D364300461629 /* checkmark_green@2x.png in Resources */,
 				AF229275174EF9EC000D0662 /* Default-568h@2x.png in Resources */,
+				AFE7D2E31789B8C8000F81C3 /* menu_chip.png in Resources */,
 				AF229276174EF9EC000D0662 /* Default.png in Resources */,
 				AF0AF423177A964C00C68A7C /* trash.png in Resources */,
 				AF0AF426177A9BBD00C68A7C /* shadow.png in Resources */,
@@ -541,6 +583,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFE7D2E51789DE21000F81C3 /* CLMMenuViewController.m in Sources */,
+				AFE7D2E41789DE1B000F81C3 /* CLMAnimations.m in Sources */,
 				AF89D1751780936100B7E7F6 /* CLMPinchGestureTableView.m in Sources */,
 				AF22925D174EF9B1000D0662 /* main.m in Sources */,
 				AF229274174EF9EC000D0662 /* CLMAppDelegate.m in Sources */,

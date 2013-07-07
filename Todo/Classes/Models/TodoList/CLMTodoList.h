@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 @class CLMTodoItem;
 
-@interface CLMTodoList : NSObject
+@interface CLMTodoList : NSObject <NSCoding>
 @property (nonatomic, strong) NSNumber *listID;
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSArray *items;
+@property (nonatomic, strong) NSMutableArray *items;
 
 - (void)addTodoItem:(CLMTodoItem *)newItem;
 - (void)removeTodoItem:(CLMTodoItem *)item;

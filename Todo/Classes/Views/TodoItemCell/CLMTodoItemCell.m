@@ -9,6 +9,8 @@
 #import "CLMTodoItemCell.h"
 #import "CLMTodoItem.h"
 
+#import "CLMListCell.h"
+
 static const CGFloat kActionThreshold = 50;
 static const CGFloat kCenterRestState = 160;
 static const CGFloat kLeftThreshold = kCenterRestState + kActionThreshold;
@@ -27,7 +29,7 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        UIView *view = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] lastObject];
+        UIView *view = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([CLMListCell class]) owner:self options:nil] lastObject];
         [self.contentView addSubview:view];
         [self setBackgroundColor:[UIColor clearColor]];
         

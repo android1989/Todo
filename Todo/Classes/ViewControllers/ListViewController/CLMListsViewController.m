@@ -51,7 +51,7 @@ static const float kPullActionContentOffset = -50.0f;
         weakSelf.lists = data;
         [weakSelf.listsTableView reloadData];
     }];
-   
+        
     [self skinView];
     
     self.pinchGestureDelegate = [[CLMPinchGestureTableView alloc] initWithTableView:self.listsTableView];
@@ -90,35 +90,6 @@ static const float kPullActionContentOffset = -50.0f;
     
     return _placeholderCell;
 }
-
-//#pragma mark CLMListCellDelegate
-//- (void)handleLongPress:(CLMListCell *)cell
-//{
-//    int index = 0;
-//    for (CLMListCell *tempCell in self.listsTableView.visibleCells)
-//    {
-//        if (tempCell == cell)
-//        {
-//            return;
-//        }
-//        [tempCell transitionToDownStateWithDelay:index*.1];
-//       
-//        index++;
-//    }
-//}
-//
-//- (void)handleLongPressUp:(CLMListCell *)cell
-//{
-//    for (CLMListCell *tempCell in self.listsTableView.visibleCells)
-//    {
-//        [tempCell transitionToNormalState];
-//        if (tempCell == cell)
-//        {
-//            return;
-//        }
-//        
-//    }
-//}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

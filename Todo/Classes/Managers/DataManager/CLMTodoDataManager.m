@@ -14,6 +14,7 @@ static CLMTodoDataManager *sharedManager = nil;
 
 @interface CLMTodoDataManager ()
 @property (nonatomic, strong) RKObjectManager *objectManager;
+@property (nonatomic, strong) NSMutableArray *lists;
 @end
 
 @implementation CLMTodoDataManager
@@ -39,6 +40,13 @@ static CLMTodoDataManager *sharedManager = nil;
         [self setupDataMapping];
     }
     return self;
+}
+
+- (void)saveData
+{
+    NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *file = [cachesFolder stringByAppendingPathComponent:@"lists"];
+    [NSKeyedArchiver archiveRootObject:self.lists toFile:file];
 }
 #pragma mark - RestKit Data Mapping
 
@@ -68,19 +76,33 @@ static CLMTodoDataManager *sharedManager = nil;
 
 - (void)fetchLists:(dataCompletionBlock)completionBlock
 {
-    [self.objectManager getObjectsAtPath:CLMListsPath parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        if (mappingResult)
-        {
-            if (completionBlock)
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    completionBlock(mappingResult.array);
-                });
-            }
-        }
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+    __weak CLMTodoDataManager *weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
-    }];
+        NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *file = [cachesFolder stringByAppendingPathComponent:@"lists"];
+        weakSelf.lists = [NSKeyedUnarchiver unarchiveObjectWithFile:file];
+        if (!weakSelf.lists)
+        {
+            weakSelf.lists = [[NSMutableArray alloc] init];
+        }
+        completionBlock(self.lists);
+    });
+    
+//WEB
+//    [self.objectManager getObjectsAtPath:CLMListsPath parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+//        if (mappingResult)
+//        {
+//            if (completionBlock)
+//            {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    completionBlock(mappingResult.array);
+//                });
+//            }
+//        }
+//    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+//        
+//    }];
 }
 
 - (void)fetchList:(CLMTodoList *)list completionBlock:(dataCompletionBlock)completionBlock
