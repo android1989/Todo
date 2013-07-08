@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, MenuState)
 @property (nonatomic, weak) IBOutlet UIView *menuView;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, assign) MenuState state;
 @end
 
 @implementation CLMMenuViewController
@@ -37,6 +38,8 @@ typedef NS_ENUM(NSInteger, MenuState)
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self configurePanGesture];
+    [self configureTapGesture];
+    self.state = MenuStateClosed;
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,9 +56,54 @@ typedef NS_ENUM(NSInteger, MenuState)
 
 - (void)configureTapGesture
 {
-    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-    
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestureRecognizer:)];
+    [self.view addGestureRecognizer:self.tapGestureRecognizer];
 }
+
+#pragma mark - Menu Animations
+
+- (void)animateMenuOpen
+{
+    self.state = MenuStateOpen;
+    [self animateMenuToCGPoint:CGPointMake(230, 470)];
+}
+
+- (void)animateMenuClose
+{
+    self.state = MenuStateClosed;
+    [self animateMenuToCGPoint:CGPointMake(305, 546)];
+}
+
+- (void)animateMenuToCGPoint:(CGPoint)endPoint
+{
+    CGFloat distance = [self getMenuDistanceFromCGPoint:self.menuView.center];
+    CGFloat finalDistance = [self getMenuDistanceFromCGPoint:endPoint];
+    NSInteger bounceFactor = (finalDistance-distance)/10;
+    [UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        self.menuView.center = CGPointMake(endPoint.x-bounceFactor, endPoint.y-bounceFactor);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            self.menuView.center = CGPointMake(endPoint.x, endPoint.y);
+        } completion:^(BOOL finished) {
+            
+        }];
+    }];
+}
+#pragma mark - UITapGestureRecognizer
+
+- (void)handleTapGestureRecognizer:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    switch (self.state)
+    {
+        case MenuStateClosed:
+            [self animateMenuOpen];
+            break;
+        case MenuStateOpen:
+            [self animateMenuClose];
+            break;
+    }
+}
+
 #pragma mark - UIPanGestureRecognizer
 - (void)handlePanGestureRecognizer:(UIPanGestureRecognizer *)panGestureRecognizer
 {
@@ -71,24 +119,58 @@ typedef NS_ENUM(NSInteger, MenuState)
     }else{
         translationValue = translation.y;
     }
-   
+    
+    if (translation.x < 0 && translation.y > 0)
+    {
+        translationValue = 0;
+    }
+    translationValue *= 0.35;
+    
     CGPoint newCenter = self.menuView.center;
     newCenter.x += translationValue;
     newCenter.y += translationValue;
-    
     CGPoint bottomCorner = CGPointMake(305, 546);
     CGFloat totalDistance = sqrt(pow(bottomCorner.x-newCenter.x, 2)+pow(bottomCorner.y-newCenter.y, 2));
-    if (totalDistance < 100)
-    {
-        self.menuView.center = newCenter;
-    }
     
-    if (newCenter.x > 305)
+    switch (panGestureRecognizer.state)
     {
-        self.menuView.center = bottomCorner;
+        case UIGestureRecognizerStateBegan:
+            
+            break;
+        case UIGestureRecognizerStateEnded:
+        {
+            CGFloat finalDistance = [self getMenuDistanceFromCGPoint:CGPointMake(230, 470)];
+            if (totalDistance > finalDistance/2.0f)
+            {
+                [self animateMenuOpen];
+            }else{
+                [self animateMenuClose];
+            }
+        }
+            break;
+        case UIGestureRecognizerStateChanged:
+        {
+            if (totalDistance < 120)
+            {
+                self.menuView.center = newCenter;
+            }
+            
+            if (newCenter.x > 305)
+            {
+                self.menuView.center = bottomCorner;
+            }
+        }
+        default:
+            break;
     }
-    
     
     [panGestureRecognizer setTranslation:CGPointZero inView:self.view];
+}
+
+#pragma mark - Helpers
+- (CGFloat)getMenuDistanceFromCGPoint:(CGPoint)origin;
+{
+    CGPoint bottomCorner = CGPointMake(305, 546);
+    return sqrt(pow(bottomCorner.x-origin.x, 2)+pow(bottomCorner.y-origin.y, 2));
 }
 @end
