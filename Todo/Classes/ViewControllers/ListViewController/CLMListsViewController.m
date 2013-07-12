@@ -14,17 +14,18 @@
 #import "UIColor+TodoColors.h"
 #import "CLMTodoItem.h"
 #import "CLMPinchGestureTableView.h"
+#import "CLMListNavigationViewController.h"
 
 static const float kPullActionContentOffset = -50.0f;
 
 @interface CLMListsViewController () <UITableViewDataSource, UITableViewDelegate, CLMListCellDelegate, CLMPinchGestureTableViewDelegate>
 
 @property (nonatomic, strong) CLMTodoViewController *todoViewController;
-@property (nonatomic, strong) IBOutlet UITableView *listsTableView;
 @property (nonatomic, strong) NSMutableArray *lists;
 
 //Scroll View Add Item
 @property (nonatomic, assign) BOOL pullInProgress;
+@property (nonatomic, assign) BOOL pullComplete;
 @property (nonatomic, strong) CLMListCell *placeholderCell;
 
 //Pinch
@@ -49,19 +50,20 @@ static const float kPullActionContentOffset = -50.0f;
     __weak CLMListsViewController *weakSelf = self;
     [[CLMTodoDataManager sharedManager] fetchLists:^(id data) {
         weakSelf.lists = data;
-        [weakSelf.listsTableView reloadData];
+        [weakSelf.tableView reloadData];
     }];
         
     [self skinView];
     
-    self.pinchGestureDelegate = [[CLMPinchGestureTableView alloc] initWithTableView:self.listsTableView];
+    self.pinchGestureDelegate = [[CLMPinchGestureTableView alloc] initWithTableView:self.tableView];
     self.pinchGestureDelegate.delegate = self;
 }
 
 - (void)skinView
 {
-    [self.listsTableView setBackgroundColor:[UIColor clearColor]];
-    [self.view setBackgroundColor:[UIColor creamColor]];
+    [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
+    [self.tableView setSeparatorColor:self.view.backgroundColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,6 +88,7 @@ static const float kPullActionContentOffset = -50.0f;
 {
     if (!_placeholderCell) {
         _placeholderCell = [[CLMListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ListCellIdentifer];
+        _placeholderCell.center = CGPointMake(_placeholderCell.center.x-1,_placeholderCell.center.y);
     }
     
     return _placeholderCell;
@@ -111,6 +114,7 @@ static const float kPullActionContentOffset = -50.0f;
     //Configure Cell
     CLMTodoList *item = [self.lists objectAtIndex:indexPath.item];
     cell.titleLabel.text = item.title;
+    cell.countLabel.text = [NSString stringWithFormat:@"%d",[item.items count]];
     return cell;
 }
 
@@ -130,11 +134,8 @@ static const float kPullActionContentOffset = -50.0f;
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     CLMTodoList *list = [self.lists objectAtIndex:indexPath.item];
     self.todoViewController.list = list;
-    
-    [self addChildViewController:self.todoViewController];
-    [self.view addSubview:self.todoViewController.view];
-    [self.todoViewController didMoveToParentViewController:self];
-     
+        
+    [self.navigationViewController pushBaseListViewController:self.todoViewController fromIndex:indexPath.row];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -145,13 +146,13 @@ static const float kPullActionContentOffset = -50.0f;
     
     if (self.pullInProgress)
     {
-        [self.listsTableView insertSubview:self.placeholderCell atIndex:0];
+        [self.tableView insertSubview:self.placeholderCell atIndex:0];
     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (self.pullInProgress)
+    if (self.pullInProgress && !self.pullComplete)
     {
         CGFloat percentComplete = (scrollView.contentOffset.y - kPullActionContentOffset)/kPullActionContentOffset;
         self.placeholderCell.alpha = percentComplete +.5;
@@ -180,54 +181,49 @@ static const float kPullActionContentOffset = -50.0f;
 {
     if (self.pullInProgress)
     {
-        
-        CGFloat percentComplete = (scrollView.contentOffset.y - kPullActionContentOffset)/kPullActionContentOffset;
-        
-        if (percentComplete > 1)
+        if (self.pullComplete)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 CLMTodoList *cell = [[CLMTodoList alloc] init];
                 cell.title = @"New Item";
                 [self.lists insertObject:cell atIndex:0];
-                
-                CGPoint contentOffset = self.listsTableView.contentOffset;
-                contentOffset.y += 90;
-                [self.listsTableView reloadData];
-
-                [self.listsTableView setContentOffset:contentOffset animated:NO];
-                [self.listsTableView setContentOffset:CGPointZero animated:YES];
+                [self.tableView reloadData];
+                scrollView.contentInset = UIEdgeInsetsMake(20.0f, 0.0f, 0.0f, 0.0f);
                 [self.placeholderCell removeFromSuperview];
+                self.pullComplete = NO;
             });
             self.pullInProgress = NO;
         }
     }
 }
 
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if (self.pullInProgress)
     {
-        
         CGFloat percentComplete = (scrollView.contentOffset.y - kPullActionContentOffset)/kPullActionContentOffset;
         
         if (percentComplete > 1)
         {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [scrollView setContentOffset:CGPointMake(0, -90) animated:YES];
-            });      
-            return;
+            self.pullComplete = YES;
+            self.placeholderCell.titleLabel.text = @"New Item";
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.1];
+            scrollView.contentInset = UIEdgeInsetsMake(92.0f, 0.0f, 0.0f, 0.0f);
+            [UIView commitAnimations];
+            
         }
-    }    
+    }
 }
 
 -(void)cellHasBeenDeleted:(CLMListCell *)cell
 {
-	NSIndexPath *indexPath = [self.listsTableView indexPathForCell:cell];
+	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 	[self.lists removeObjectAtIndex:indexPath.row];
 	
-	[self.listsTableView beginUpdates];
-	[self.listsTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-	[self.listsTableView endUpdates];
+	[self.tableView beginUpdates];
+	[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	[self.tableView endUpdates];
 }
 
 - (void)addNewItemAtIndex:(NSInteger)index

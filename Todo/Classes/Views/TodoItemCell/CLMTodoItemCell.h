@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, ItemCellState)
 @interface CLMTodoItemCell : UITableViewCell
 
 @property (nonatomic, readonly) ItemCellState state;
-@property (nonatomic, weak) IBOutlet UITextField *titleField;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) id<CLMTodoItemCellDelegate> delegate;
 - (NSInteger)cellHeight;
 - (void)configureForItem:(CLMTodoItem *)item;
@@ -30,6 +30,6 @@ typedef NS_ENUM(NSInteger, ItemCellState)
 
 - (void)cellHasBeenDeleted:(CLMTodoItemCell *)cell;
 - (void)cellHasBecomeChecked:(CLMTodoItemCell *)cell;
-- (void)cellHasBecomeUnchecked:(CLMTodoItemCell *)cell;;
-
+- (void)cellHasBecomeUnchecked:(CLMTodoItemCell *)cell;
+- (void)cellRequestsEdit:(CLMTodoItemCell *)cell;
 @end

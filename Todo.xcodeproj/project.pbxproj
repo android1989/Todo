@@ -51,6 +51,10 @@
 		AFBCC8F4177D364300461629 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8F2177D364300461629 /* checkmark@2x.png */; };
 		AFBCC8F6177D369900461629 /* checkmark_green.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8F5177D369900461629 /* checkmark_green.png */; };
 		AFBCC8F8177D36A300461629 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = AFBCC8F7177D36A300461629 /* checkmark.png */; };
+		AFC0E933178B9D9F00061FA1 /* CLMListNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC0E932178B9D8000061FA1 /* CLMListNavigationViewController.m */; };
+		AFC0E937178BA60900061FA1 /* CLMBaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC0E936178BA60900061FA1 /* CLMBaseListViewController.m */; };
+		AFC0E939178BAA1A00061FA1 /* CLMBaseListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFC0E938178BAA1A00061FA1 /* CLMBaseListViewController.xib */; };
+		AFC0E93B178BAA4900061FA1 /* CLMListNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFC0E93A178BAA4800061FA1 /* CLMListNavigationViewController.xib */; };
 		AFE7D2E31789B8C8000F81C3 /* menu_chip.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE7D2E21789B8C8000F81C3 /* menu_chip.png */; };
 		AFE7D2E41789DE1B000F81C3 /* CLMAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE7D2DC17890EBB000F81C3 /* CLMAnimations.m */; };
 		AFE7D2E51789DE21000F81C3 /* CLMMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE7D2DF178928B4000F81C3 /* CLMMenuViewController.m */; };
@@ -123,6 +127,12 @@
 		AFBCC8F2177D364300461629 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark@2x.png"; sourceTree = "<group>"; };
 		AFBCC8F5177D369900461629 /* checkmark_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark_green.png; sourceTree = "<group>"; };
 		AFBCC8F7177D36A300461629 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
+		AFC0E931178B9D8000061FA1 /* CLMListNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMListNavigationViewController.h; sourceTree = "<group>"; };
+		AFC0E932178B9D8000061FA1 /* CLMListNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLMListNavigationViewController.m; sourceTree = "<group>"; };
+		AFC0E935178BA60900061FA1 /* CLMBaseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMBaseListViewController.h; sourceTree = "<group>"; };
+		AFC0E936178BA60900061FA1 /* CLMBaseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMBaseListViewController.m; sourceTree = "<group>"; };
+		AFC0E938178BAA1A00061FA1 /* CLMBaseListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMBaseListViewController.xib; sourceTree = "<group>"; };
+		AFC0E93A178BAA4800061FA1 /* CLMListNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMListNavigationViewController.xib; sourceTree = "<group>"; };
 		AFE7D2DB17890EBB000F81C3 /* CLMAnimations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMAnimations.h; sourceTree = "<group>"; };
 		AFE7D2DC17890EBB000F81C3 /* CLMAnimations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLMAnimations.m; sourceTree = "<group>"; };
 		AFE7D2DE178928B4000F81C3 /* CLMMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMMenuViewController.h; sourceTree = "<group>"; };
@@ -237,6 +247,7 @@
 		AF229279174EFA06000D0662 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AFC0E934178BA5F500061FA1 /* BaseListViewController */,
 				AFE7D2DD178928A4000F81C3 /* MenuViewController */,
 				AF2293C61751205A000D0662 /* ListViewController */,
 				AF2292B317507DC7000D0662 /* EditItemViewController */,
@@ -385,6 +396,7 @@
 		AF2292B917508268000D0662 /* Mediators */ = {
 			isa = PBXGroup;
 			children = (
+				AFC0E930178B9D6B00061FA1 /* ListToList */,
 				AF2292BA1750827C000D0662 /* ListToEdit */,
 			);
 			path = Mediators;
@@ -435,6 +447,26 @@
 				AF89D174178091FA00B7E7F6 /* CLMPinchGestureTableView.m */,
 			);
 			path = GestureRecognizers;
+			sourceTree = "<group>";
+		};
+		AFC0E930178B9D6B00061FA1 /* ListToList */ = {
+			isa = PBXGroup;
+			children = (
+				AFC0E931178B9D8000061FA1 /* CLMListNavigationViewController.h */,
+				AFC0E932178B9D8000061FA1 /* CLMListNavigationViewController.m */,
+				AFC0E93A178BAA4800061FA1 /* CLMListNavigationViewController.xib */,
+			);
+			path = ListToList;
+			sourceTree = "<group>";
+		};
+		AFC0E934178BA5F500061FA1 /* BaseListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AFC0E935178BA60900061FA1 /* CLMBaseListViewController.h */,
+				AFC0E936178BA60900061FA1 /* CLMBaseListViewController.m */,
+				AFC0E938178BAA1A00061FA1 /* CLMBaseListViewController.xib */,
+			);
+			path = BaseListViewController;
 			sourceTree = "<group>";
 		};
 		AFE7D2DA17890EAE000F81C3 /* Animations */ = {
@@ -529,12 +561,14 @@
 				AFE7D2E31789B8C8000F81C3 /* menu_chip.png in Resources */,
 				AF229276174EF9EC000D0662 /* Default.png in Resources */,
 				AF0AF423177A964C00C68A7C /* trash.png in Resources */,
+				AFC0E93B178BAA4900061FA1 /* CLMListNavigationViewController.xib in Resources */,
 				AF0AF426177A9BBD00C68A7C /* shadow.png in Resources */,
 				AF229277174EF9EC000D0662 /* Default@2x.png in Resources */,
 				AF229284174EFB7C000D0662 /* CLMTodoViewController.xib in Resources */,
 				AF2292A8174F1E0B000D0662 /* CLMTodoItemCell.xib in Resources */,
 				AF2292AB174F2144000D0662 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				AF2292B1175020CC000D0662 /* cell_background.png in Resources */,
+				AFC0E939178BAA1A00061FA1 /* CLMBaseListViewController.xib in Resources */,
 				AFBCC8F4177D364300461629 /* checkmark@2x.png in Resources */,
 				AF2292B2175020CC000D0662 /* cell_background@2x.png in Resources */,
 				AF2292B817507DDB000D0662 /* CLMEditItemViewController.xib in Resources */,
@@ -583,9 +617,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFC0E933178B9D9F00061FA1 /* CLMListNavigationViewController.m in Sources */,
 				AFE7D2E51789DE21000F81C3 /* CLMMenuViewController.m in Sources */,
 				AFE7D2E41789DE1B000F81C3 /* CLMAnimations.m in Sources */,
 				AF89D1751780936100B7E7F6 /* CLMPinchGestureTableView.m in Sources */,
+				AFC0E937178BA60900061FA1 /* CLMBaseListViewController.m in Sources */,
 				AF22925D174EF9B1000D0662 /* main.m in Sources */,
 				AF229274174EF9EC000D0662 /* CLMAppDelegate.m in Sources */,
 				AF22927E174EFA32000D0662 /* CLMApplicationViewController.m in Sources */,

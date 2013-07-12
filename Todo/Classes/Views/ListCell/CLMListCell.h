@@ -19,6 +19,8 @@ typedef NS_ENUM(NSInteger, ListCellState)
 @interface CLMListCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *countLabel;
+@property (nonatomic, weak) IBOutlet UIView *colorTag;
 @property (nonatomic, weak) IBOutlet UIView *mainContentView;
 @property (nonatomic, weak) IBOutlet UIView *shadowView;
 @property (nonatomic, weak) id<CLMListCellDelegate> delegate;

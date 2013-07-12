@@ -11,20 +11,22 @@
 #import "CLMTodoItem.h"
 #import "UITableView+CellSwitch.h"
 #import "UIColor+TodoColors.h"
-#import "CLMListCell.h"
 #import "CLMEditItemViewController.h"
 #import "CLMTodoList.h"
+#import "CLMListNavigationViewController.h"
+#import "CLMTodoItemCell.h"
 
 static const float kPullActionContentOffset = -50.0f;
 
-@interface CLMTodoViewController () <UITableViewDataSource, UITableViewDelegate, CLMEditItemViewControllerDelegate>
+@interface CLMTodoViewController () <UITableViewDataSource, UITableViewDelegate, CLMEditItemViewControllerDelegate, CLMTodoItemCellDelegate>
 
 @property (nonatomic, strong) CLMEditItemViewController *editViewController;
-@property (nonatomic, strong) IBOutlet UITableView *itemsTableView;
+@property (nonatomic, assign) CGPoint savedContentOffset;
 
 //Scroll View Add Item
 @property (nonatomic, assign) BOOL pullInProgress;
-@property (nonatomic, strong) CLMListCell *placeholderCell;
+@property (nonatomic, assign) BOOL pullComplete;
+@property (nonatomic, strong) CLMTodoItemCell *placeholderCell;
 
 @end
 
@@ -43,7 +45,7 @@ static const float kPullActionContentOffset = -50.0f;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-
+    [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
     [self skinView];
 }
 
@@ -53,16 +55,15 @@ static const float kPullActionContentOffset = -50.0f;
 //    __weak CLMTodoViewController *weakSelf = self;
 //    [[CLMTodoDataManager sharedManager] fetchList:self.list completionBlock:^(id data) {
 //        weakSelf.list = data;
-//        [weakSelf.itemsTableView reloadData];
+//        [weakSelf.tableView reloadData];
 //    }];
     
-    [self.itemsTableView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)skinView
 {
-    [self.view setBackgroundColor:[UIColor fireColor]];
-    [self.itemsTableView setBackgroundColor:[UIColor clearColor]];
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,10 +85,11 @@ static const float kPullActionContentOffset = -50.0f;
     return _editViewController;
 }
 
-- (CLMListCell *)placeholderCell
+- (CLMTodoItemCell *)placeholderCell
 {
     if (!_placeholderCell) {
-        _placeholderCell = [[CLMListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ListCellIdentifer];
+        _placeholderCell = [[CLMTodoItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TodoCellIdentifer];
+        _placeholderCell.center = CGPointMake(_placeholderCell.center.x-1,_placeholderCell.center.y);
     }
     
     return _placeholderCell;
@@ -101,11 +103,13 @@ static const float kPullActionContentOffset = -50.0f;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CLMListCell *cell = (CLMListCell *)[tableView dequeueReusableCellWithIdentifier:ListCellIdentifer];
+    CLMTodoItemCell *cell = (CLMTodoItemCell *)[tableView dequeueReusableCellWithIdentifier:TodoCellIdentifer];
     
     if (!cell)
     {
-        cell = [[CLMListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ListCellIdentifer];
+        cell = [[CLMTodoItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TodoCellIdentifer];
+        cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     //Configure Cell
@@ -119,14 +123,7 @@ static const float kPullActionContentOffset = -50.0f;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
-    self.editViewController.item = item;
-    
-    [self addChildViewController:self.editViewController];
-    [self.view addSubview:self.editViewController.view];
-    [self.editViewController didMoveToParentViewController:self];
 //    if (indexPath.item < [self.items count] - 1)
 //    {
 //        [tableView switchCellAtIndexPath:indexPath withCellAtIndexPath:[NSIndexPath indexPathForItem:indexPath.item+1 inSection:indexPath.section]];
@@ -142,13 +139,13 @@ static const float kPullActionContentOffset = -50.0f;
     
     if (self.pullInProgress)
     {
-        [self.itemsTableView insertSubview:self.placeholderCell atIndex:0];
+        [self.tableView insertSubview:self.placeholderCell atIndex:0];
     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (self.pullInProgress)
+    if (self.pullInProgress && !self.pullComplete)
     {
         CGFloat percentComplete = (scrollView.contentOffset.y - kPullActionContentOffset)/kPullActionContentOffset;
         self.placeholderCell.alpha = percentComplete +.5;
@@ -178,40 +175,48 @@ static const float kPullActionContentOffset = -50.0f;
     if (self.pullInProgress)
     {
         
-        CGFloat percentComplete = (scrollView.contentOffset.y - kPullActionContentOffset)/kPullActionContentOffset;
-        
-        if (percentComplete > 1)
+        if (self.pullComplete)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 CLMTodoItem *cell = [[CLMTodoItem alloc] init];
                 cell.title = @"New Item";
+                if (!self.list.items)
+                {
+                    self.list.items = [[NSMutableArray alloc] init];
+                }
                 [self.list.items insertObject:cell atIndex:0];
                 
-                CGPoint contentOffset = self.itemsTableView.contentOffset;
-                contentOffset.y += 90;
-                [self.itemsTableView reloadData];
-                [self.itemsTableView setContentOffset:contentOffset animated:NO];
-                [self.itemsTableView setContentOffset:CGPointZero animated:YES];
+                CGPoint contentOffset = self.tableView.contentOffset;
+                contentOffset.y += 72;
+                [self.tableView reloadData];
+                scrollView.contentInset = UIEdgeInsetsMake(20.0f, 0.0f, 0.0f, 0.0f);
+                //[scrollView setContentOffset:CGPointMake(0, -self.tableView.contentInset.top) animated:NO];
                 [self.placeholderCell removeFromSuperview];
+                
+//                [self cellRequestsEdit:self.tableView.visibleCells[0]];
+//                self.savedContentOffset = CGPointMake(0, -20);
+                self.pullComplete = NO;
             });
             self.pullInProgress = NO;
         }
     }
 }
 
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if (self.pullInProgress)
     {
-        
         CGFloat percentComplete = (scrollView.contentOffset.y - kPullActionContentOffset)/kPullActionContentOffset;
         
         if (percentComplete > 1)
         {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [scrollView setContentOffset:CGPointMake(0, -90) animated:YES];
-            });
-            return;
+            self.pullComplete = YES;
+            self.placeholderCell.titleLabel.text = @"New Item";
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.1];
+            scrollView.contentInset = UIEdgeInsetsMake(92.0f, 0.0f, 0.0f, 0.0f);
+            [UIView commitAnimations];
+            
         }
     }
 }
@@ -221,43 +226,77 @@ static const float kPullActionContentOffset = -50.0f;
 //#pragma mark - CLMTodoItemCellDelegate
 //-(void)cellHasBecomeUnchecked:(CLMTodoItemCell *)cell
 //{
-//    NSIndexPath *indexPath = [self.itemsTableView indexPathForCell:cell];
+//    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 //    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
 //    [item updateChecked:NO];
 //}
 //
 //- (void)cellHasBecomeChecked:(CLMTodoItemCell *)cell
 //{
-//    NSIndexPath *indexPath = [self.itemsTableView indexPathForCell:cell];
+//    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 //    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
 //    [item updateChecked:YES];
 //}
 //
 //- (void)cellHasBeenDeleted:(CLMTodoItemCell *)cell
 //{
-//    NSIndexPath *indexPath = [self.itemsTableView indexPathForCell:cell];
+//    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 //    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
 //    [self.list removeTodoItem:item];
-//    [self.itemsTableView reloadData];
+//    [self.tableView reloadData];
 //}
 
 #pragma mark - CLMEditItemViewControllerDelegate
 
 - (void)editDidFinish
 {
-    [self.editViewController willMoveToParentViewController:nil];
-    [self.editViewController.view removeFromSuperview];
-    [self.editViewController removeFromParentViewController];
+    [self.tableView reloadData];
+    [UIView animateWithDuration:.5 animations:^{
+        self.editViewController.view.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        [self.editViewController willMoveToParentViewController:nil];
+        [self.editViewController.view removeFromSuperview];
+        [self.editViewController removeFromParentViewController];
+        self.editViewController.view.alpha = 1.0;
+        
+        [UIView animateWithDuration:.5 animations:^{
+            self.tableView.contentOffset = self.savedContentOffset;
+        } completion:^(BOOL finished) {
+          
+        }];
+    }];
+}
+
+#pragma mark - CLMTodoItemCellDelegate
+- (void)cellRequestsEdit:(CLMTodoItemCell *)cell
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    CLMTodoItem *item = [self.list.items objectAtIndex:indexPath.item];
+    self.editViewController.item = item;
     
-    [self.itemsTableView reloadData];
+        CGFloat yTransform = cell.frame.origin.y;
+        [UIView animateWithDuration:.5 animations:^{
+            CGPoint contentOffset = self.tableView.contentOffset;
+            self.savedContentOffset = contentOffset;
+            contentOffset.y += yTransform;
+            self.tableView.contentOffset = contentOffset;
+        } completion:^(BOOL finished) {
+            self.editViewController.view.alpha = 0.0;
+            [self addChildViewController:self.editViewController];
+            [self.view addSubview:self.editViewController.view];
+            [self.editViewController didMoveToParentViewController:self];
+            [UIView animateWithDuration:.5 animations:^{
+                self.editViewController.view.alpha = 1.0;
+            } completion:^(BOOL finished) {
+            
+            }];
+        }];
 }
 
 #pragma mark - IBActions
 - (IBAction)back:(id)sender
 {
-    [self willMoveToParentViewController:nil];
-    [self removeFromParentViewController];
-    [self.view removeFromSuperview];
+    [self.navigationViewController popBaseListViewController];
 }
 
 - (IBAction)new:(id)sender
@@ -265,7 +304,7 @@ static const float kPullActionContentOffset = -50.0f;
     CLMTodoItem *newItem = [[CLMTodoItem alloc] init];
     
     [self.list addTodoItem:newItem];
-    [self.itemsTableView reloadData];
+    [self.tableView reloadData];
     
     self.editViewController.item = newItem;
     

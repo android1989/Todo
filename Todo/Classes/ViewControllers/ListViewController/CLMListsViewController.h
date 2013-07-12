@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLMBaseListViewController.h"
 
-@interface CLMListsViewController : UIViewController
+@interface CLMListsViewController : CLMBaseListViewController
 
 @end

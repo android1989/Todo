@@ -14,14 +14,6 @@ static const CGFloat kLeftThreshold = kCenterRestState + kActionThreshold;
 static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 
 @interface CLMListCell () <UIGestureRecognizerDelegate>
-@property (nonatomic, weak) IBOutlet UIImageView *backgroundImageView;
-@property (nonatomic, weak) IBOutlet UIView *cellView;
-@property (nonatomic, weak) IBOutlet UIView *leftView;
-@property (nonatomic, weak) IBOutlet UIView *rightView;
-@property (nonatomic, weak) IBOutlet UIImageView *trashCanImageView;
-@property (nonatomic, weak) IBOutlet UIImageView *trashCanRedImageView;
-@property (nonatomic, weak) IBOutlet UIImageView *checkmarkImageView;
-@property (nonatomic, weak) IBOutlet UIImageView *checkmarkGreenImageView;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 @end
 
@@ -38,7 +30,6 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
         [self setBackgroundColor:[UIColor clearColor]];
         [self configureFont];
         [self configureGestureRecognizer];
-        [self configureShadow];
     }
     return self;
 }
@@ -57,25 +48,7 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
     //[_titleLabel setFont:[UIFont fontWithName:@"OpenSans-SemiboldItalic" size:14]];
 }
 
-- (void)configureShadow
-{
-    CGPathRef path = [UIBezierPath bezierPathWithRect:self.cellView.frame].CGPath;
-    [self.cellView.layer setShadowPath:path];
-    
-    self.cellView.layer.masksToBounds = NO;
-    self.cellView.layer.shouldRasterize = YES;
-    self.cellView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.cellView.layer.shadowOffset = CGSizeMake(0, 0);
-    self.cellView.layer.shadowRadius = 10;
-    // Don't forget the rasterization scale
-    // I spent days trying to figure out why retina display assets weren't working as expected
-    self.cellView.layer.rasterizationScale = [UIScreen mainScreen].scale;
-}
 
-- (void)layoutSubviews
-{
-    [self configureShadow];
-}
 //- (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer
 //{
 //    if (recognizer.state == UIGestureRecognizerStateBegan)
@@ -121,24 +94,14 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 
 - (void)animateDeletion
 {
-	
-	[self.trashCanImageView removeFromSuperview];
-	[self addSubview:self.trashCanImageView];
-	self.trashCanImageView.center = CGPointMake(self.trashCanImageView.center.x+160, self.rightView.center.y);
-	
-	self.leftView.alpha = 0.0;
-	self.rightView.alpha = 0.0;
+
 	//All fingers are lifted.
 	[UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		self.cellView.center = CGPointMake( kCenterRestState,
-										   self.cellView.center.y);
+		
 	} completion:^(BOOL finished) {
 		[UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 			
-			self.cellView.transform = CGAffineTransformMakeScale(0, 0);
-			self.cellView.center = CGPointMake(self.trashCanImageView.center.x,
-											   self.trashCanImageView.center.y);
-		} completion:^(BOOL finished) {
+        } completion:^(BOOL finished) {
 			[self.delegate cellHasBeenDeleted:self];
 		}];
 	}];
@@ -148,22 +111,10 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 
 - (void)animateCheck
 {
-	[self.checkmarkGreenImageView removeFromSuperview];
-    [self addSubview:self.checkmarkGreenImageView];
-    
-	self.leftView.alpha = 0.0;
-	self.rightView.alpha = 0.0;
-	//All fingers are lifted.
+    //All fingers are lifted.
 	[UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		self.cellView.center = CGPointMake( kCenterRestState,
-										   self.cellView.center.y);
-        CGPoint newCenter = self.checkmarkGreenImageView.center;
-        newCenter.x = CGRectGetMinX(self.leftView.frame)+15;
-        newCenter.y = CGRectGetMinY(self.leftView.frame)+8;
-        self.checkmarkGreenImageView.center = newCenter;
-	} completion:^(BOOL finished) {
-        self.leftView.alpha = 1.0;
-        self.rightView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+       
 	}];
     
 	
@@ -174,47 +125,31 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
 {
     if(panRecognizer.state == UIGestureRecognizerStateEnded)
     {
-		if (self.cellView.center.x <= (kRightThreshold)) {
-			[self animateDeletion];
-		}else if (self.cellView.center.x >= (kLeftThreshold)) {
-			[self animateCheck];
-		}else{
-			//All fingers are lifted.
-			[UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-				self.cellView.center = CGPointMake( kCenterRestState,
-												   self.cellView.center.y);
-				self.trashCanImageView.transform = CGAffineTransformMakeScale(0, 0);
-				self.checkmarkImageView.transform = CGAffineTransformMakeScale(0, 0);
-			} completion:^(BOOL finished) {
-				
-			}];
-		}
-        
+        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.center = CGPointMake(kCenterRestState,
+                                               self.center.y);
+        } completion:^(BOOL finished) {
+            
+        }];
 
         return;
     }else{
         
-        CGPoint translation = [panRecognizer translationInView:self.cellView];
+        CGPoint translation = [panRecognizer translationInView:self];
         
-        if ((self.cellView.center.x) > kLeftThreshold || (self.cellView.center.x) < kRightThreshold)
+        if ((self.center.x) > kLeftThreshold || (self.center.x) < kRightThreshold)
         {
             translation.x *= .2;
         }
         
-        CGFloat newXPosition = self.cellView.center.x + translation.x;
+        CGFloat newXPosition = self.center.x + translation.x;
         
         
-        self.cellView.center = CGPointMake( newXPosition,
-                                            self.cellView.center.y);
+        self.center = CGPointMake( newXPosition,
+                                            self.center.y);
         
         CGFloat fraction = MIN(MAX(abs(newXPosition-kCenterRestState)/kActionThreshold,0.0f), 1.0f);
         
-        self.trashCanRedImageView.transform = CGAffineTransformMakeScale(fraction, fraction);
-        self.trashCanImageView.transform = CGAffineTransformMakeScale(fraction, fraction);
-        self.trashCanImageView.alpha = 1-fraction;
-        self.checkmarkImageView.transform = CGAffineTransformMakeScale(fraction, fraction);
-        self.checkmarkGreenImageView.transform = CGAffineTransformMakeScale(fraction, fraction);
-        self.checkmarkImageView.alpha = 1-fraction;
         [panRecognizer setTranslation:CGPointMake(0, 0) inView:self];
     }
     

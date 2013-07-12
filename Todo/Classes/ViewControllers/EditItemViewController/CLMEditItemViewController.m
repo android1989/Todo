@@ -45,6 +45,12 @@
 
 #pragma mark - IBActions
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self removeViewController];
+    return NO;
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if ([string isEqualToString:@"\n"])

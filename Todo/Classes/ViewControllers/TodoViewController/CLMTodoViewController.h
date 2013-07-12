@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLMBaseListViewController.h"
 @class CLMTodoList;
 
-@interface CLMTodoViewController : UIViewController
+@interface CLMTodoViewController : CLMBaseListViewController
 
 @property (nonatomic, strong) CLMTodoList *list;
 @end

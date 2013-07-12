@@ -156,11 +156,11 @@ static CLMTodoDataManager *sharedManager = nil;
 
 - (void)updateItem:(CLMTodoItem *)item completionBlock:(dataCompletionBlock)completionBlock
 {
-    [self.objectManager putObject:nil path:[CLMItemsPath stringByAppendingFormat:@"/%@.json",item.itemID] parameters:@{@"title":item.title,@"checked":@(item.checked)} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        
-    }];
+//    [self.objectManager putObject:nil path:[CLMItemsPath stringByAppendingFormat:@"/%@.json",item.itemID] parameters:@{@"title":item.title,@"checked":@(item.checked)} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+//        
+//    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+//        
+//    }];
 }
 
 #pragma mark - deletes

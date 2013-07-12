@@ -10,6 +10,8 @@
 #import "CLMApplicationViewController.h"
 #import "CLMTodoDataManager.h"
 #import "CLMMenuViewController.h"
+#import "CLMListsViewController.h"
+#import "CLMListNavigationViewController.h"
 
 @interface CLMAppDelegate ()
 
@@ -26,15 +28,16 @@
     [self.applicationViewController setApplicationLaunchBlock:^(void)
     {
         //do set up in here
-        weakSelf.listsViewController = [[CLMListsViewController alloc] init];
-        [weakSelf addChildViewController:weakSelf.listsViewController];
-        [weakSelf.view addSubview:weakSelf.listsViewController.view];
-        [weakSelf.listsViewController didMoveToParentViewController:weakSelf];
+        CLMListsViewController *listViewController = [[CLMListsViewController alloc] init];
+        weakSelf.listNavigationController = [[CLMListNavigationViewController alloc] initWithRootListViewController:listViewController];
+        [weakSelf addChildViewController:weakSelf.listNavigationController];
+        [weakSelf.view addSubview:weakSelf.listNavigationController.view];
+        [weakSelf.listNavigationController didMoveToParentViewController:weakSelf];
         
-        weakSelf.menuViewController = [[CLMMenuViewController alloc] init];
-        [weakSelf addChildViewController:weakSelf.menuViewController];
-        [weakSelf.view addSubview:weakSelf.menuViewController.view];
-        [weakSelf.menuViewController didMoveToParentViewController:weakSelf];
+//        weakSelf.menuViewController = [[CLMMenuViewController alloc] init];
+//        [weakSelf addChildViewController:weakSelf.menuViewController];
+//        [weakSelf.view addSubview:weakSelf.menuViewController.view];
+//        [weakSelf.menuViewController didMoveToParentViewController:weakSelf];
         
     }];
     
