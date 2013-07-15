@@ -12,9 +12,11 @@
 #import "CLMMenuViewController.h"
 #import "CLMListNavigationViewController.h"
 
+//Testing
+#import "CLMAlertView.h"
 @interface CLMApplicationViewController ()
 
-
+@property (nonatomic, strong) CLMAlertView *alertView;
 @end
 
 @implementation CLMApplicationViewController
@@ -37,7 +39,20 @@
     {
         self.applicationLaunchBlock();
     }
+    
+  
+    
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.alertView = [[CLMAlertView alloc] initWithTitle:@"YAY" message:@"This is a test AlertView" selectionBlock:^(CLMAlertView *alertView, NSInteger buttonIndex)
+                               {
+                                   //Print the name of the button!
+                                   NSLog(@"BUTTON SELECTED");
+                               } cancelButtonTitle:nil otherButtonTitles:nil];
+    
+    [self.alertView show];
 }
 
 - (void)didReceiveMemoryWarning

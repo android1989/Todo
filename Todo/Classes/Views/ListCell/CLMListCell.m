@@ -116,8 +116,6 @@ static const CGFloat kRightThreshold = kCenterRestState - kActionThreshold;
     } completion:^(BOOL finished) {
        
 	}];
-    
-	
 }
 #pragma mark - UIPanGestureRecognizer
 

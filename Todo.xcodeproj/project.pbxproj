@@ -55,6 +55,7 @@
 		AFC0E937178BA60900061FA1 /* CLMBaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC0E936178BA60900061FA1 /* CLMBaseListViewController.m */; };
 		AFC0E939178BAA1A00061FA1 /* CLMBaseListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFC0E938178BAA1A00061FA1 /* CLMBaseListViewController.xib */; };
 		AFC0E93B178BAA4900061FA1 /* CLMListNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFC0E93A178BAA4800061FA1 /* CLMListNavigationViewController.xib */; };
+		AFDD16E117938BC800A4061E /* CLMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDD16E017938BB800A4061E /* CLMAlertView.m */; };
 		AFE7D2E31789B8C8000F81C3 /* menu_chip.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE7D2E21789B8C8000F81C3 /* menu_chip.png */; };
 		AFE7D2E41789DE1B000F81C3 /* CLMAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE7D2DC17890EBB000F81C3 /* CLMAnimations.m */; };
 		AFE7D2E51789DE21000F81C3 /* CLMMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE7D2DF178928B4000F81C3 /* CLMMenuViewController.m */; };
@@ -133,6 +134,8 @@
 		AFC0E936178BA60900061FA1 /* CLMBaseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMBaseListViewController.m; sourceTree = "<group>"; };
 		AFC0E938178BAA1A00061FA1 /* CLMBaseListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMBaseListViewController.xib; sourceTree = "<group>"; };
 		AFC0E93A178BAA4800061FA1 /* CLMListNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMListNavigationViewController.xib; sourceTree = "<group>"; };
+		AFDD16DF17938BB800A4061E /* CLMAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMAlertView.h; sourceTree = "<group>"; };
+		AFDD16E017938BB800A4061E /* CLMAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLMAlertView.m; sourceTree = "<group>"; };
 		AFE7D2DB17890EBB000F81C3 /* CLMAnimations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMAnimations.h; sourceTree = "<group>"; };
 		AFE7D2DC17890EBB000F81C3 /* CLMAnimations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLMAnimations.m; sourceTree = "<group>"; };
 		AFE7D2DE178928B4000F81C3 /* CLMMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMMenuViewController.h; sourceTree = "<group>"; };
@@ -211,6 +214,7 @@
 		AF22926D174EF9EC000D0662 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AFDD16DE17938B7C00A4061E /* CLMAlertView */,
 				AF2292B917508268000D0662 /* Mediators */,
 				AF229291174EFDDD000D0662 /* Managers */,
 				AF229285174EFC6E000D0662 /* Utilities */,
@@ -469,6 +473,15 @@
 			path = BaseListViewController;
 			sourceTree = "<group>";
 		};
+		AFDD16DE17938B7C00A4061E /* CLMAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				AFDD16DF17938BB800A4061E /* CLMAlertView.h */,
+				AFDD16E017938BB800A4061E /* CLMAlertView.m */,
+			);
+			path = CLMAlertView;
+			sourceTree = "<group>";
+		};
 		AFE7D2DA17890EAE000F81C3 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,6 +630,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFDD16E117938BC800A4061E /* CLMAlertView.m in Sources */,
 				AFC0E933178B9D9F00061FA1 /* CLMListNavigationViewController.m in Sources */,
 				AFE7D2E51789DE21000F81C3 /* CLMMenuViewController.m in Sources */,
 				AFE7D2E41789DE1B000F81C3 /* CLMAnimations.m in Sources */,
