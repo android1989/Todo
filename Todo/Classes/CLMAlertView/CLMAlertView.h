@@ -24,13 +24,13 @@ typedef void(^CLMAlertViewDismissAnimationCompletion)(CLMAlertView * alertView);
 
 @interface CLMAlertView : UIView
 
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
-- (instancetype)initWithView:(UIView *)view delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message selectionBlock:(CLMAlertViewDidSelectItemBlock)selectionBlock cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
-- (instancetype)initWithView:(UIView *)view selectionBlock:(CLMAlertViewDidSelectItemBlock)selectionBlock cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate buttonTitles:(NSArray *)buttonTitles;
+- (instancetype)initWithView:(UIView *)view delegate:(id)delegate buttonTitles:(NSArray *)buttonTitles;
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message buttonTitles:(NSArray *)buttonTitles selectionBlock:(CLMAlertViewDidSelectItemBlock)selectionBlock;
+- (instancetype)initWithView:(UIView *)view buttonTitles:(NSArray *)buttonTitles selectionBlock:(CLMAlertViewDidSelectItemBlock)selectionBlock;
 
 - (void)show;
-
+- (void)dismiss;
 /****** NOTE ********
  If you plan on using this you are responsible for removing the alert view when finished animation in the dismissal block!!!!
  ****** FIN ********/

@@ -14,6 +14,7 @@
 
 //Testing
 #import "CLMAlertView.h"
+
 @interface CLMApplicationViewController ()
 
 @property (nonatomic, strong) CLMAlertView *alertView;
@@ -46,11 +47,18 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.alertView = [[CLMAlertView alloc] initWithTitle:@"YAY" message:@"This is a test AlertView" selectionBlock:^(CLMAlertView *alertView, NSInteger buttonIndex)
-                               {
-                                   //Print the name of the button!
-                                   NSLog(@"BUTTON SELECTED");
-                               } cancelButtonTitle:nil otherButtonTitles:nil];
+    self.alertView = [[CLMAlertView alloc] initWithTitle:@"YAY" message:@"This is a test AlertView" buttonTitles:@[@"Cancel"] selectionBlock:^(CLMAlertView *alertView, NSInteger buttonIndex)
+                      {
+                          //Print the name of the button!
+                          switch (buttonIndex) {
+                              case 0:
+                                  [alertView dismiss];
+                                  break;
+                                  
+                              default:
+                                  break;
+                          }
+                      }];
     
     [self.alertView show];
 }
